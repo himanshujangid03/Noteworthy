@@ -1,0 +1,11 @@
+.welcome {
+}
+
+.welcome h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.welcome p {
+  margin-top: 1rem;
+}

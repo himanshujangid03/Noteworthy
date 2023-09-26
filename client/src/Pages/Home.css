@@ -1,4 +1,11 @@
 .home {
   display: grid;
   grid-template-columns: auto 1fr;
+  height: 100vh;
+  background-color: #f0f9ff;
+}
+
+.home__right {
+  display: grid;
+  grid-template-rows: auto 1fr;
 }

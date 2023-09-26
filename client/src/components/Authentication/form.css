@@ -65,6 +65,10 @@
   margin: 2rem auto;
 }
 
+.form Form button.loading{
+  background-color: black;
+}
+
 .form Form button:hover {
   color: white;
   background-color: black;

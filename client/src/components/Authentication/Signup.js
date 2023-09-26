@@ -1,8 +1,11 @@
-import { Form, Link, redirect } from "react-router-dom";
+import { Form, Link, redirect, useNavigation } from "react-router-dom";
 import "./form.css";
 import { signupApi } from "../../utils/api";
+import Loader from "../../Loader";
 
 function Signup() {
+  const navigation = useNavigation();
+  const isLogin = navigation.state === "submitting";
   return (
     <div className="form">
       <Link to={"/"}>
@@ -22,7 +25,9 @@ function Signup() {
             type="password"
             placeholder="Enter your password"
           />
-          <button>Submit</button>
+          <button className={`${isLogin ? "loading" : ""}`}>
+            {isLogin ? <Loader /> : "Submit"}
+          </button>
           <p>
             Already have an account! <Link to={"/login"}>Login</Link>
           </p>

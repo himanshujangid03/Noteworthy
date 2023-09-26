@@ -2,7 +2,6 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
 const noteRouter = require("./router/notesRouter");
 const userRouter = require("./router/userRouter");
 const globalErrorHandler = require("./controller/errorController");
@@ -17,9 +16,8 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.json());
 app.use("/", (req, res, next) => {
-  console.log(req.cookies);
+  //console.log(req.cookies);
   next();
 });
 

@@ -1,3 +1,66 @@
-.side-panel {
+.side-panel a {
+  text-decoration: none;
+  color: black;
+  border-radius: 0.7rem;
+  min-width: 10rem;
+  padding: 0.8rem;
+  margin: 0.5rem 0 0.5rem 0;
+  outline: none;
   display: flex;
+  justify-content: flex-start;
+  transition: all 0.2s;
+}
+.side-panel a:hover {
+  background-color: #07598525;
+}
+
+.side-panel a.active {
+  color: white;
+  background-color: #075985;
+}
+
+.side-panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 1rem;
+  width: 15rem;
+}
+
+.side-panel__info {
+  margin: 1rem 0 2rem 0;
+  padding: 1rem 0 0rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hl {
+  height: 1px;
+  width: 10rem;
+  background-color: rgb(196, 196, 196);
+  margin-top: 3rem;
+  border-radius: 1rem;
+}
+
+.side-panel__navlinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.side-panel__navlinks p {
+  border-radius: 0.7rem;
+  transition: all 0.2s;
+  background-color: transparent;
+  transition: all 0.2s;
+}
+
+.side-panel__navlinks a.logout {
+  background-color: #07598525;
+  margin-top: 2rem;
+}
+.side-panel__navlinks a.logout:hover {
+  background-color: #075985;
+  color: white;
 }

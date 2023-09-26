@@ -60,7 +60,9 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  createSendToken(user, 201, res);
+  setTimeout(() => {
+    createSendToken(user, 201, res);
+  }, 500);
 });
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
@@ -71,12 +73,15 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
     );
 
     const currentUser = await User.findById(decoded.id);
+    console.log(currentUser);
 
     if (!currentUser) {
       return next();
     }
 
-    res.locals.user = currentUser;
+    res.status(201).json({
+      user: currentUser,
+    });
     return next();
   }
   next();

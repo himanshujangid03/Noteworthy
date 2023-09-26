@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import "./AuthPage.css";
+import { useContext, useEffect } from "react";
+import AuthContext from "../utils/auth-context";
 
 function AuthPage() {
+  const ctx = useContext(AuthContext);
+  if (ctx.user) {
+    return null;
+  }
   return (
     <>
       <div className="AuthPage">
