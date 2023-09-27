@@ -10,6 +10,7 @@
   padding: 0.6rem;
   margin: 0 1rem 0 0;
   width: 20rem;
+  max-width: 90%;
   border: none;
   outline: none;
   background-color: #ffffff;
@@ -25,8 +26,13 @@
   font-size: 1.2rem;
   width: 10rem;
   border: none;
-  border-radius: 1rem;
-  background-color: #075985;
+  border-radius: 0.6rem;
+  background: rgb(46, 16, 101);
+  background: linear-gradient(
+    36deg,
+    rgba(46, 16, 101, 1) 37%,
+    rgba(55, 48, 163, 1) 97%
+  );
   color: white;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
   transition: all 0.1s ease-in-out;
@@ -35,5 +41,25 @@
   font-weight: 500;
 }
 
-.topheader button:hover {
+.topheader .user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.topheader .user-info P {
+  font-size: 1.2rem;
+  color: black;
+  margin: 0 0 0 1rem;
+}
+
+/* ------------------ MEDIA QUERY --------------------------*/
+
+@media only screen and (max-width: 600px) {
+  .topheader .user-info {
+    display: none;
+  }
+
+  .topheader input {
+  }
 }

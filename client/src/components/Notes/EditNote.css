@@ -1,0 +1,6 @@
+.edit-notes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+}

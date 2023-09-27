@@ -8,10 +8,15 @@ import Signup, {
   action as signupAction,
 } from "./components/Authentication/Signup";
 import Home from "./Pages/Home";
-import NewNote from "./components/Notes/NewNote";
+import NewNote, {
+  action as createNewNoteAction,
+} from "./components/Notes/NewNote";
 import EditNote from "./components/Notes/EditNote";
 import Welcome from "./components/Notes/Welcome";
-import AllNotes from "./components/Notes/AllNotes";
+import Favourites from "./components/Notes/Favourites";
+import GetNotes, {
+  loader as getNotesLoader,
+} from "./components/Notes/GetNotes";
 
 const router = createBrowserRouter([
   {
@@ -22,11 +27,14 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+    id: "get-notes",
+    loader: getNotesLoader,
     children: [
       { index: true, element: <Welcome /> },
-      { path: "new", element: <NewNote /> },
+      { path: "new", element: <NewNote />, action: createNewNoteAction },
+      { path: "get-notes", element: <GetNotes /> },
       { path: "edit", element: <EditNote /> },
-      { path: "all-notes", element: <AllNotes /> },
+      { path: "fav", element: <Favourites /> },
     ],
   },
   { path: "/login", element: <Login />, action: loginAction },

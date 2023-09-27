@@ -11,16 +11,16 @@ export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(false);
   const fetchIsLoggedHandler = async () => {
     const response = await fetch("http://localhost:4000/profile", {
+      method: "GET",
       credentials: "include",
     });
+
     const resData = await response.json();
-    const user = resData.user;
-    if (user) {
-      setUser(user);
+    if (resData) {
+      setUser(resData);
     } else {
       setUser(false);
     }
-    console.log(user);
   };
   useEffect(() => {
     fetchIsLoggedHandler();

@@ -14,7 +14,7 @@ function signToken(id) {
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
-  const expires = new Date(Date.now() + 1 * 60 * 60 * 1000);
+  const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
 
   const cookieOptions = {
     expires,
@@ -66,6 +66,11 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  if (!req.cookies.jwt) {
+    return next(
+      new AppError("You are not logged In! Please login to get access"),
+    );
+  }
   if (req.cookies.jwt) {
     const decoded = await promisify(jwt.verify)(
       req.cookies.jwt,
@@ -73,16 +78,23 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
     );
 
     const currentUser = await User.findById(decoded.id);
-    console.log(currentUser);
 
     if (!currentUser) {
-      return next();
+      return next(new AppError("User does not exist!"));
     }
-
-    res.status(201).json({
-      user: currentUser,
-    });
+    req.user = currentUser;
     return next();
   }
+  next();
+});
+
+exports.logout = catchAsync(async (req, res, next) => {
+  res.cookie("jwt", "loggedout");
+});
+
+exports.getUserName = catchAsync(async (req, res, next) => {
+  const userName = req.user.name;
+
+  res.status(201).json({ name: userName });
   next();
 });

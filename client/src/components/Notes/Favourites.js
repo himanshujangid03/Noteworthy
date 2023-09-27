@@ -3,13 +3,9 @@ import "./EditNote.css";
 import { useEffect, useState } from "react";
 import Note from "./Note";
 
-function EditNote() {
+function Favourites() {
   const data = useRouteLoaderData("get-notes");
   const [notesData, setNotesData] = useState([]);
-
-  if (!data) {
-    setNotesData(null);
-  }
 
   useEffect(() => {
     setNotesData(data);
@@ -23,9 +19,9 @@ function EditNote() {
   return (
     <>
       <div>
-        {sortedNotes.length === 0 ? (
+        {sortedNotes.length > 0 ? (
           <>
-            <ul className="edit-notes">
+            <ul className="notes">
               {notesData.map((item) => (
                 <Note key={item._id} item={item} />
               ))}
@@ -41,4 +37,4 @@ function EditNote() {
   );
 }
 
-export default EditNote;
+export default Favourites;

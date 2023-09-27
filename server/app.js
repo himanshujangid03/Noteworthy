@@ -17,7 +17,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", (req, res, next) => {
-  //console.log(req.cookies);
   next();
 });
 

@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBookmark,
@@ -8,6 +8,7 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import "./SidePanel.css";
+import Logo from "../../assets/NoteWorthy-logos_black.png";
 
 function SidePanel() {
   const NavLinkClass = ({ isActive }) => {
@@ -16,7 +17,7 @@ function SidePanel() {
   return (
     <div className="side-panel">
       <div className="side-panel__info">
-        <h3>NoteWorthy</h3>
+        <img className="logo" src={Logo} alt={Logo} />
 
         <div className="hl"></div>
       </div>
@@ -27,7 +28,7 @@ function SidePanel() {
             Dashboard
           </p>
         </NavLink>
-        <NavLink className={NavLinkClass} to={"/home/new"}>
+        <NavLink className={NavLinkClass} to={"/home/get-notes"}>
           <p>
             <FontAwesomeIcon
               icon={faNoteSticky}
