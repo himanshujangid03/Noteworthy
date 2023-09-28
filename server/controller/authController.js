@@ -83,6 +83,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
       return next(new AppError("User does not exist!"));
     }
     req.user = currentUser;
+    console.log(currentUser);
     return next();
   }
   next();
@@ -93,8 +94,8 @@ exports.logout = catchAsync(async (req, res, next) => {
 });
 
 exports.getUserName = catchAsync(async (req, res, next) => {
-  const userName = req.user.name;
+  const { name } = req.user;
 
-  res.status(201).json({ name: userName });
+  res.status(201).json({ name: name });
   next();
 });

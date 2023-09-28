@@ -6,9 +6,7 @@ function Logout() {
   const isLogin = navigation.state === "submitting";
   return (
     <div className="form">
-      <Link to={"/"}>
-        <p>← back to home page</p>
-      </Link>
+      <p>Are you sure you want to logout!</p>
       <Form>
         <button className={`${isLogin ? "loading" : ""}`}>
           {isLogin ? <Loader /> : "Submit"}

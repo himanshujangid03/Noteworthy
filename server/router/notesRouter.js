@@ -11,4 +11,12 @@ router
   .route("/get-note")
   .get(authController.isLoggedIn, notesController.getNote);
 
+router
+  .route("/update-note/:id")
+  .patch(authController.isLoggedIn, notesController.updateNote);
+
+router
+  .route("/delete-note/:id")
+  .patch(authController.isLoggedIn, notesController.updateNote);
+
 module.exports = router;

@@ -14,9 +14,8 @@ function Signup() {
       <div>
         <Form method="post">
           <h1>Create a new account</h1>
-          <input name="name" type="text" placeholder="Enter your name" />
           <input
-            name="email"
+            name="username"
             type="email"
             placeholder="Enter your email address"
           />
@@ -26,7 +25,7 @@ function Signup() {
             placeholder="Enter your password"
           />
           <button className={`${isLogin ? "loading" : ""}`}>
-            {isLogin ? <Loader /> : "Submit"}
+            {isLogin ? <Loader /> : "Create my account"}
           </button>
           <p>
             Already have an account! <Link to={"/login"}>Login</Link>
@@ -43,8 +42,7 @@ export async function action({ request, params }) {
   const data = await request.formData();
 
   const userData = {
-    name: data.get("name"),
-    email: data.get("email"),
+    username: data.get("username"),
     password: data.get("password"),
   };
   const response = await fetch(signupApi, {

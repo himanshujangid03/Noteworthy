@@ -1,15 +1,12 @@
 import { useRouteLoaderData } from "react-router-dom";
 import "./EditNote.css";
 import { useEffect, useState } from "react";
-import Note from "./Note";
+import EditSingleNote from "./EditSingleNote";
+import Modal from "../../ui/Modal";
 
 function EditNote() {
   const data = useRouteLoaderData("get-notes");
   const [notesData, setNotesData] = useState([]);
-
-  if (!data) {
-    setNotesData(null);
-  }
 
   useEffect(() => {
     setNotesData(data);
@@ -23,11 +20,11 @@ function EditNote() {
   return (
     <>
       <div>
-        {sortedNotes.length === 0 ? (
+        {sortedNotes.length > 0 ? (
           <>
             <ul className="edit-notes">
               {notesData.map((item) => (
-                <Note key={item._id} item={item} />
+                <EditSingleNote key={item._id} item={item} />
               ))}
             </ul>
           </>

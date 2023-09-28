@@ -2,5 +2,90 @@
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
-  padding: 1rem;
+  border-radius: 1.5rem;
+  padding: 0;
 }
+
+.edit-note {
+  margin: 0.2rem;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: #ffffff;
+  border-bottom: 0px solid #d1d1d1b6;
+}
+
+.edit-note .edit-note__div1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-note .edit-note__div1 span {
+  height: fit-content;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  border-radius: 10rem;
+  background-color: rgba(37, 99, 235, 1);
+}
+.edit-note .edit-note__div1 span:hover {
+}
+
+.edit-note__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 0rem 0;
+}
+
+.edit-note__content {
+  font-size: 1.1rem;
+  margin: 0 0 0rem 0;
+}
+
+.edit-note__date {
+  font-size: 1rem;
+}
+
+.edit-note__editbtn {
+  margin: 0rem 0.5rem 0 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  outline: none;
+  font-size: 1.2rem;
+  min-width: 5rem;
+  border: none;
+  border-radius: 0.6rem;
+  background: #4477ce;
+  color: white;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+.edit-note__editbtn:hover {
+  background: #2c5191;
+}
+
+.edit-note__deletebtn {
+  margin: 0rem 0.5rem 0 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  outline: none;
+  font-size: 1.2rem;
+  min-width: 5rem;
+  border: none;
+  border-radius: 0.6rem;
+  background: #ae445a;
+  color: white;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+.edit-note__deletebtn:hover {
+  background: #813241;
+}
+
+/* -----------  EDIT TOGGLE MODAL -----------------------*/
+
+/* -----------  EDIT TOGGLE MODAL -----------------------*/
