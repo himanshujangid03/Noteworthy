@@ -31,7 +31,7 @@ function EditNoteModal({ closeModal, item }) {
         closeModal(false);
         setIsLoading(false);
       }
-    }, 1000);
+    }, 500);
   };
 
   return (
@@ -55,9 +55,9 @@ function EditNoteModal({ closeModal, item }) {
               <p>This will permanently remove the selected item.</p>
             </div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button bg="white">Cancel</Button>
+              <Button type="cancelbtn">Cancel</Button>
               <form method="delete" onSubmit={submitHandler}>
-                <Button bg="#ae445a" txt="white">
+                <Button type="deletebtn">
                   {isLoading ? <Loader /> : "Delete"}
                 </Button>
               </form>

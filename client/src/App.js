@@ -17,9 +17,7 @@ import Favourites from "./components/Notes/Favourites";
 import GetNotes, {
   loader as getNotesLoader,
 } from "./components/Notes/GetNotes";
-import EditNoteModal, {
-  action as EditNoteLoader,
-} from "./components/Notes/EditNoteModal";
+import EditNoteModal from "./components/Notes/EditNoteModal";
 
 const router = createBrowserRouter([
   {
@@ -30,22 +28,24 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+    errorElement: <Error />,
     id: "get-notes",
     loader: getNotesLoader,
     children: [
       { index: true, element: <Welcome /> },
       { path: "new", element: <NewNote />, action: createNewNoteAction },
-      { path: "get-notes", element: <GetNotes /> },
+      { path: "get-notes", element: <GetNotes />, errorElement: <Error /> },
       {
         path: "edit",
         element: <EditNote />,
+        errorElement: <Error />,
         children: [{ path: ":id", element: <EditNoteModal /> }],
       },
 
       { path: "fav", element: <Favourites /> },
     ],
   },
-  { path: "/login", element: <Login />, action: loginAction },
+  { path: "/login", element: <Login />, id: "loginData", action: loginAction },
   { path: "/signup", element: <Signup />, action: signupAction },
 ]);
 

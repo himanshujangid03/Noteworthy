@@ -9,8 +9,9 @@ import { useState } from "react";
 
 import EditNoteModal from "./EditNoteModal";
 import DeleteModal from "./DeleteModal";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
+import IconOnlyButton from "../../ui/IconBtn";
 
 const iconStyle = {
   margin: "0rem 1rem 0 0",
@@ -59,9 +60,8 @@ function Note({ item }) {
             <Link to={`${item._id}`}>
               <Button
                 onClick={editNoteHandler}
-                bg="#2c5191"
-                darkbg="#2c5191"
-                txt="white"
+                type="editbtn"
+                responsive="isMobile"
               >
                 <FontAwesomeIcon
                   icon={faPenToSquare}
@@ -74,13 +74,29 @@ function Note({ item }) {
 
             <Button
               onClick={deleteNoteHandler}
-              bg="#ae445a"
-              darkbg="#813241"
-              txt="white"
+              type="deletebtn"
+              responsive="isMobile"
             >
               <FontAwesomeIcon icon={faTrashCan} style={iconStyle} size="sm" />
               Delete
             </Button>
+
+            <Link to={`${item._id}`}>
+              <IconOnlyButton
+                onClick={editNoteHandler}
+                type="editbtn"
+                responsive="isMobile"
+              >
+                <FontAwesomeIcon icon={faPenToSquare} size="sm" />
+              </IconOnlyButton>
+            </Link>
+            <IconOnlyButton
+              onClick={deleteNoteHandler}
+              type="deletebtn"
+              responsive="isMobile"
+            >
+              <FontAwesomeIcon icon={faTrashCan} size="sm" />
+            </IconOnlyButton>
           </li>
         </div>
       </div>

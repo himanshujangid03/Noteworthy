@@ -22,8 +22,9 @@
   transform: translate(-50%, -50%);
   padding: 1rem;
   background-color: transparent;
-  z-index: 9999999;
   animation: appear 0.3s;
+  max-width: 90%;
+  z-index: 9999999;
 }
 
 @keyframes appear {

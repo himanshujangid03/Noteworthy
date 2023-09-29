@@ -1,4 +1,5 @@
 exports.loginApi = "http://localhost:4000/user/login";
+exports.logoutApi = "http://localhost:4000/user/logout";
 exports.signupApi = "http://localhost:4000/user/signup";
 exports.getNotesApi = "http://localhost:4000/note/get-note";
 exports.createNotesApi = "http://localhost:4000/note/create-note";

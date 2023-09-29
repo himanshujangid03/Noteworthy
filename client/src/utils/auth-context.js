@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 
 const AuthContext = React.createContext({
   user: Object,
-  toggleModal: Boolean,
-  favorites: Array,
+  refresh: Boolean,
+  favourites: Array,
   setFavourites: () => {},
-  setToggleModal: () => {},
+  setRefresh: () => {},
+  query: String,
+  setQuery: () => {},
 });
 
 export const AuthContextProvider = (props) => {
   const [query, setQuery] = useState("");
-  const [toggleModal, setToggleModal] = useState(false);
-  const [favorites, setFavourites] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const [favourites, setFavourites] = useState([]);
   const [user, setUser] = useState(false);
   const fetchIsLoggedHandler = async () => {
     const response = await fetch("http://localhost:4000/user/profile", {
@@ -37,9 +39,9 @@ export const AuthContextProvider = (props) => {
       <AuthContext.Provider
         value={{
           user: user,
-          toggleModal: toggleModal,
-          setToggleModal: setToggleModal,
-          favorites: favorites,
+          refresh: refresh,
+          setRefresh: setRefresh,
+          favourites: favourites,
           setFavourites: setFavourites,
           query: query,
           setQuery: setQuery,

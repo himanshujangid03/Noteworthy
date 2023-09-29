@@ -5,13 +5,13 @@ import Loader from "../../ui/Loader";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import Button from "../../ui/Button";
 
 function EditNoteModal({ closeModal, item }) {
   const [title, setTitle] = useState(item.title);
   const [content, setContent] = useState(item.content);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const navigation = useNavigation();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -30,6 +30,9 @@ function EditNoteModal({ closeModal, item }) {
       credentials: "include",
       body: JSON.stringify(noteData),
     });
+    if (!response.ok) {
+      return response;
+    }
     setTimeout(() => {
       if (response.ok) {
         navigate("");
@@ -71,7 +74,7 @@ function EditNoteModal({ closeModal, item }) {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
-              <button>{isLoading ? <Loader /> : "Submit"}</button>
+              <Button type="editbtn">{isLoading ? <Loader /> : "Edit"}</Button>
             </form>
           </div>
         </div>
@@ -81,25 +84,3 @@ function EditNoteModal({ closeModal, item }) {
 }
 
 export default EditNoteModal;
-
-/* export async function action({ params, request }) {
-  const data = await request.formData();
-  const id = params.id;
-  console.log(id);
-
-  const noteData = {
-    title: data.get("title"),
-    content: data.get("content"),
-  };
-
-  const response = await fetch(editNotesApi + id, {
-    method: "PATCH",
-    body: JSON.stringify(noteData),
-  });
-
-  if (!response.ok) {
-    return response;
-  }
-
-  return redirect("/home/get-notes");
-} */

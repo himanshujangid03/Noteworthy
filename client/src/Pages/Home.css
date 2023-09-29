@@ -20,11 +20,17 @@
 }
 
 .home__right .note-content {
-  background: white;
+  background: rgb(1, 7, 79);
+  background: linear-gradient(
+    29deg,
+    rgba(1, 7, 79, 0.6474964985994398) 0%,
+    rgba(18, 72, 107, 0.6839110644257703) 49%,
+    rgba(65, 145, 151, 0.6727065826330532) 94%
+  );
   padding: 2rem;
   margin: 1rem;
-  border-radius: 1.5rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 2rem;
+  box-shadow: rgb(65, 65, 65) 0px 6px 15px;
   overflow-y: scroll;
 }
 
@@ -55,5 +61,9 @@
     display: grid;
     grid-template-rows: auto 1fr;
     overflow: hidden;
+  }
+
+  .home__right .note-content {
+    padding: 1rem;
   }
 }

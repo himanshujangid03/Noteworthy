@@ -21,14 +21,14 @@ function Note({ item }) {
   };
   const formatDate = date.toLocaleString("en-US", options);
   const addToFavouritesHandler = () => {
-    const favorites = ctx.favorites.some((el) => {
-      if (el._id === item._id) return true;
+    ctx.favourites.some((el) => {
+      if (el._id !== item._id) {
+        ctx.setFavourites((el) => {
+          return [...el, item];
+        });
+      }
     });
-    if (!favorites)
-      ctx.setFavourites((el) => {
-        return [...el, item];
-      });
-    localStorage.setItem("favourites", JSON.stringify(ctx.favorites));
+    localStorage.setItem("favourites", JSON.stringify(ctx.favourites));
   };
 
   return (

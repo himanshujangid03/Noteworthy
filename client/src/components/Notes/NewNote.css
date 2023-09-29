@@ -1,9 +1,7 @@
 .new-note {
-  background-color: white;
-  padding: 1rem;
-  margin: 1rem;
+  padding: 0.5rem;
+  margin: 0rem;
   border-radius: 1.5rem;
-  filter: drop-shadow(0 0 0.45rem rgba(0, 0, 0, 0.075));
 }
 
 .new-note Form {
@@ -14,6 +12,7 @@
 
 .new-note Form input {
   width: 20rem;
+  max-width: 90%;
   padding: 1rem;
   margin: 0.5rem;
   border: 1px solid rgb(233, 233, 233);
@@ -30,21 +29,12 @@
   border-radius: 0.6rem;
   outline: none;
 }
-.new-note Form button {
-  font-size: 1.2rem;
-  margin: 0.5rem;
-  width: 15rem;
-  padding: 0.6rem;
-  border: 1px solid rgb(228, 228, 228);
-  border-radius: 1rem;
-  font-family: "Montserrat";
-  font-weight: 600;
-  outline: none;
-  cursor: pointer;
-  background-color: rgb(48, 48, 48);
-  transition: all 0.2s;
-  color: white;
-}
-.new-note Form button:hover {
-  background-color: rgb(0, 0, 0);
+
+/* -------------------- MEDIA QUERY ----------------------------*/
+
+@media only screen and (max-width: 600px) {
+  .new-note Form input {
+    width: 10rem;
+    max-width: 95%;
+  }
 }

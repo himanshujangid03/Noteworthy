@@ -1,12 +1,14 @@
 import { useRouteLoaderData } from "react-router-dom";
 import "./EditNote.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import EditSingleNote from "./EditSingleNote";
 import Modal from "../../ui/Modal";
+import AuthContext from "../../utils/auth-context";
 
 function EditNote() {
   const data = useRouteLoaderData("get-notes");
   const [notesData, setNotesData] = useState([]);
+  const ctx = useContext(AuthContext);
 
   useEffect(() => {
     setNotesData(data);
@@ -17,21 +19,25 @@ function EditNote() {
     const timestampB = new Date(b.createdAt);
     return timestampB - timestampA;
   });
+
+  const filteredEditNotes = sortedNotes
+    ? sortedNotes.filter((item) =>
+        item.title.toLowerCase().includes(ctx.query.toLowerCase())
+      )
+    : sortedNotes;
   return (
     <>
       <div>
-        {sortedNotes.length > 0 ? (
+        {filteredEditNotes ? (
           <>
             <ul className="edit-notes">
-              {notesData.map((item) => (
+              {filteredEditNotes.map((item) => (
                 <EditSingleNote key={item._id} item={item} />
               ))}
             </ul>
           </>
         ) : (
-          <p>
-            Either you are not logged In or You did not create notes till now!
-          </p>
+          <p>Could not find the notes with this name</p>
         )}
       </div>
     </>

@@ -3,8 +3,8 @@
   padding: 2rem;
   margin: 1rem;
   border-radius: 1.5rem;
-  filter: drop-shadow(0 0 0.45rem rgba(0, 0, 0, 0.075));
   width: 30rem;
+  max-width: 95%;
   height: 10rem;
   display: flex;
   flex-direction: column;
@@ -13,4 +13,23 @@
 
 .delete-note p {
   margin-top: 2rem;
+}
+
+/* -------------------- MEDIA QUERY ----------------------------*/
+
+@media only screen and (max-width: 600px) {
+  .delete-note {
+    width: 15rem;
+    height: max-content;
+    padding: 1rem;
+    margin: 0;
+  }
+  .delete-note h3 {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+  }
+  .delete-note p {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+  }
 }

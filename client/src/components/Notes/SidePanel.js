@@ -10,23 +10,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./SidePanel.css";
 import Logo from "../../assets/NoteWorthy-logos_black.png";
-import Modal from "../../ui/Modal";
-import { useContext } from "react";
-import AuthContext from "../../utils/auth-context";
 import Logout from "../Authentication/Logout";
+import { useState } from "react";
 
 function SidePanel() {
-  const ctx = useContext(AuthContext);
+  const [toggleModal, setToggleModal] = useState(false);
   const NavLinkClass = ({ isActive }) => {
     return isActive ? "active" : "";
   };
 
-  const logOutHandler = () => {
-    ctx.setToggleModal(true);
-  };
-
   return (
     <>
+      {toggleModal && <Logout onClose={setToggleModal} />}
       <div className="side-panel">
         <div className="side-panel__info">
           <img className="logo" src={Logo} alt={Logo} />
@@ -73,7 +68,7 @@ function SidePanel() {
               Favourites
             </p>
           </NavLink>
-          <p className="log-out-btn" onClick={logOutHandler}>
+          <p className="log-out-btn" onClick={() => setToggleModal(true)}>
             <FontAwesomeIcon
               icon={faRightFromBracket}
               style={{ marginRight: "1rem" }}

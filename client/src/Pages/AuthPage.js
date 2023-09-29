@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import "./AuthPage.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../utils/auth-context";
 import Logo from "../assets/NoteWorthy-logos_black.png";
 
 function AuthPage() {
   const ctx = useContext(AuthContext);
+
+  useState(() => {}, [ctx]);
   return (
     <>
       <div className="AuthPage">

@@ -2,6 +2,9 @@ import { Form, redirect, useNavigation } from "react-router-dom";
 import { createNotesApi } from "../../utils/api";
 import "./NewNote.css";
 import Loader from "../../ui/Loader";
+import Button from "../../ui/Button";
+import Heading from "../../ui/Heading";
+import Br from "../../ui/Br";
 
 function NewNote(props) {
   const navigation = useNavigation();
@@ -9,6 +12,8 @@ function NewNote(props) {
   return (
     <>
       <div className="new-note">
+        <Heading as={"h3"}>Create new note</Heading>
+        <Br />
         <Form method="post">
           <input type="text" name="title" placeholder="Title" />
           <textarea
@@ -17,7 +22,9 @@ function NewNote(props) {
             name="content"
             placeholder="Content"
           />
-          <button>{`${isLoading ? <Loader /> : "Submit"} `}</button>
+          <Button type="createbtn">{`${
+            isLoading ? <Loader /> : "Submit"
+          } `}</Button>
         </Form>
       </div>
     </>

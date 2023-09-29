@@ -1,13 +1,29 @@
-import { Form, Link, redirect, useNavigation } from "react-router-dom";
+import {
+  Form,
+  Link,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 import "./form.css";
 import { loginApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AuthContext from "../../utils/auth-context";
+import Logout from "./Logout";
+import Button from "../../ui/Button";
 
 function Login() {
   const navigation = useNavigation();
   const isLogin = navigation.state === "submitting";
+  const data = useActionData();
+
+  useEffect(() => {
+    if (data) {
+      ctx.setRefresh(true);
+    }
+  }, []);
+
   const ctx = useContext(AuthContext);
   const user = ctx.user;
 
@@ -30,9 +46,9 @@ function Login() {
               type="password"
               placeholder="Enter your password"
             />
-            <button className={`${isLogin ? "loading" : ""}`}>
+            <Button type="authbtn" className={`${isLogin ? "loading" : ""}`}>
               {isLogin ? <Loader /> : "Submit"}
-            </button>
+            </Button>
             <p>
               Don't have an account! <Link to={"/signup"}>Signup</Link>
             </p>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./TopHeader.css";
 import AuthContext from "../../utils/auth-context";
 import { Link } from "react-router-dom";
@@ -7,6 +7,8 @@ import UserSvg from "../../ui/UserSvg";
 function TopHeader() {
   const ctx = useContext(AuthContext);
   const { name } = ctx.user;
+
+  useEffect(() => {}, [name]);
   return (
     <>
       <div className="topheader">
@@ -14,7 +16,8 @@ function TopHeader() {
           <input
             type="text"
             placeholder="Search for your notes..."
-            style={{ fontStyle: "italic" }}
+            value={ctx.query}
+            onChange={(e) => ctx.setQuery(e.target.value)}
           />
         </div>
         <div className="user-info">

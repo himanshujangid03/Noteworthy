@@ -83,14 +83,17 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
       return next(new AppError("User does not exist!"));
     }
     req.user = currentUser;
-    console.log(currentUser);
     return next();
   }
   next();
 });
 
 exports.logout = catchAsync(async (req, res, next) => {
-  res.cookie("jwt", "loggedout");
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 2 * 1000),
+    httpOnly: true,
+  });
+  res.status(201).json({ status: "success" });
 });
 
 exports.getUserName = catchAsync(async (req, res, next) => {
