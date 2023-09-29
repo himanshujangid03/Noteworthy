@@ -8,13 +8,6 @@
   flex-direction: column;
 }
 
-.error__div div {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-}
-
 .error__div h3 {
   margin: 1rem;
   font-size: 6rem;
@@ -23,7 +16,7 @@
 }
 
 .error__div p {
-  font-size: 3rem;
+  font-size: 1rem;
   color: grey;
   text-align: center;
 }

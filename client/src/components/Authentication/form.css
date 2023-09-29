@@ -13,6 +13,19 @@
   padding: 1rem;
 }
 
+.form .error {
+  width: fit-content;
+  max-width: 90%;
+  padding: 1.2rem;
+  outline: none;
+  border-radius: 1rem;
+  margin: 0.5rem;
+  font-size: 1.2rem;
+  background-color: #ff6565;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
 .form div {
   border-radius: 2rem;
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
@@ -49,4 +62,45 @@
 
 .form Form input:focus {
   border: 2px solid grey;
+}
+
+.form Form button {
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  width: 15rem;
+  max-width: 90%;
+  border: 2px solid rgb(236, 236, 236);
+  background-color: rgba(255, 255, 255, 0.267);
+  font-size: 1.4rem;
+  font-family: "Roboto Mono", sans-serif;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  margin: 1rem auto;
+}
+
+.form Form button:hover {
+  color: white;
+  background-color: black;
+}
+
+@media only screen and (max-width: 700px) {
+  .form Form input {
+    padding-left: 1rem;
+    height: 3rem;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+  }
+
+  .form Form button {
+    padding: 0.6rem;
+    width: 10rem;
+    max-width: 90%;
+    font-size: 1rem;
+    margin: 0.8rem auto;
+  }
+
+  .form Form h1 {
+    font-size: 1.1rem;
+  }
 }

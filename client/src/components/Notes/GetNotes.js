@@ -1,6 +1,6 @@
-import { Link, useRouteLoaderData } from "react-router-dom";
+import { Await, Link, useRouteLoaderData } from "react-router-dom";
 import { getNotesApi } from "../../utils/api";
-import { useContext, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import Note from "./Note";
 import "./GetNote.css";
 import AuthContext from "../../utils/auth-context";
@@ -17,8 +17,6 @@ function GetNotes() {
   useEffect(() => {
     if (data) {
       setNotesData(data);
-    } else {
-      setNotesData(null);
     }
   }, [data]);
 
@@ -28,7 +26,7 @@ function GetNotes() {
         const timestampB = new Date(b.createdAt);
         return timestampB - timestampA;
       })
-    : "";
+    : notesData;
 
   const filteredNotes = sortedNotes
     ? sortedNotes.filter((item) =>
@@ -54,7 +52,7 @@ function GetNotes() {
                 width: "20rem",
                 opacity: "0.5",
                 position: "absolute",
-                zIndex: "-1",
+                zIndex: "1",
               }}
               src={noDataImage}
               alt={noDataImage}

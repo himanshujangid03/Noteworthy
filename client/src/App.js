@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./Pages/RootLayout";
 import Error from "./Pages/Error";
@@ -14,10 +15,9 @@ import NewNote, {
 import EditNote from "./components/Notes/EditNote";
 import Welcome from "./components/Notes/Welcome";
 import Favourites from "./components/Notes/Favourites";
-import GetNotes, {
-  loader as getNotesLoader,
-} from "./components/Notes/GetNotes";
+import { loader as getNotesLoader } from "./components/Notes/GetNotes";
 import EditNoteModal from "./components/Notes/EditNoteModal";
+const GetNotes = React.lazy(() => import("./components/Notes/GetNotes"));
 
 const router = createBrowserRouter([
   {
@@ -34,7 +34,15 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Welcome /> },
       { path: "new", element: <NewNote />, action: createNewNoteAction },
-      { path: "get-notes", element: <GetNotes />, errorElement: <Error /> },
+      {
+        path: "get-notes",
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <GetNotes />
+          </Suspense>
+        ),
+        errorElement: <Error />,
+      },
       {
         path: "edit",
         element: <EditNote />,

@@ -2,6 +2,7 @@ import { Form, Link, redirect, useNavigation } from "react-router-dom";
 import "./form.css";
 import { signupApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
+import Button from "../../ui/Button";
 
 function Signup() {
   const navigation = useNavigation();
@@ -15,17 +16,25 @@ function Signup() {
         <Form method="post">
           <h1>Create a new account</h1>
           <input
-            name="username"
+            name="name"
+            type="text"
+            placeholder="Enter your email address"
+            required
+          />
+          <input
+            name="email"
             type="email"
             placeholder="Enter your email address"
+            required
           />
           <input
             name="password"
             type="password"
             placeholder="Enter your password"
+            required
           />
           <button className={`${isLogin ? "loading" : ""}`}>
-            {isLogin ? <Loader /> : "Create my account"}
+            {isLogin ? <Loader /> : "Create my Account"}
           </button>
           <p>
             Already have an account! <Link to={"/login"}>Login</Link>

@@ -2,7 +2,7 @@ import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { editNotesApi } from "../../utils/api";
 import "./NewNote.css";
 import Loader from "../../ui/Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../ui/Button";
@@ -74,7 +74,9 @@ function EditNoteModal({ closeModal, item }) {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
-              <Button type="editbtn">{isLoading ? <Loader /> : "Edit"}</Button>
+              <Button type="editbtn">
+                {isLoading ? <Loader /> : "Save & Continue"}
+              </Button>
             </form>
           </div>
         </div>

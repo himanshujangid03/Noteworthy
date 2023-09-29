@@ -15,15 +15,8 @@ function Favourites() {
     return timestampB - timestampA;
   });
 
-  const removeToFavouritesHandler = () => {
-    const favourites = localNotesData.some((el) => {
-      if (el._id === favourites._id) return true;
-    });
-    if (!favourites)
-      ctx.setFavourites((el) => {
-        return [...el, favourites];
-      });
-    localStorage.setItem("favourites", JSON.stringify(ctx.favorites));
+  const removeToFavouritesHandler = (item) => {
+    localStorage.removeItem("favourites", JSON.stringify(item));
   };
   return (
     <>
@@ -35,7 +28,7 @@ function Favourites() {
                 <Note
                   key={item._id}
                   item={item}
-                  removeFavourites={removeToFavouritesHandler}
+                  removeFavourites={() => removeToFavouritesHandler(item)}
                 />
               ))}
             </ul>

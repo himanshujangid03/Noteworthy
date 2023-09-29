@@ -7,6 +7,7 @@ import "./DeleteModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../ui/Button";
+import ModalDiv from "../../ui/ModalDiv";
 
 function EditNoteModal({ closeModal, item }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +42,7 @@ function EditNoteModal({ closeModal, item }) {
           <div className="overlay" onClick={() => closeModal(false)}></div>
         </Link>
         <div className="modal-content">
-          <div className="delete-note">
+          <ModalDiv type="grid3">
             <div>
               <Link to={""}>
                 <button
@@ -52,17 +53,21 @@ function EditNoteModal({ closeModal, item }) {
                 </button>
               </Link>
               <h3>Are you sure you want to delete this item?</h3>
-              <p>This will permanently remove the selected item.</p>
+              <p style={{ marginTop: "0.5rem" }}>
+                This will permanently remove the selected item.
+              </p>
             </div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button type="cancelbtn">Cancel</Button>
+              <Button type="cancelbtn" onClick={() => closeModal(false)}>
+                Cancel
+              </Button>
               <form method="delete" onSubmit={submitHandler}>
                 <Button type="deletebtn">
                   {isLoading ? <Loader /> : "Delete"}
                 </Button>
               </form>
             </div>
-          </div>
+          </ModalDiv>
         </div>
       </div>
     </>

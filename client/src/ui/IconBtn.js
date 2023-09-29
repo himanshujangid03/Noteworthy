@@ -18,11 +18,11 @@ const IconOnlyButton = styled.button`
   ${(props) =>
     props.type === "deletebtn" &&
     css`
-      background-color: #ae445a;
+      background-color: #c70039;
       color: white;
 
       &:hover {
-        background-color: #813241;
+        background-color: #952323;
       }
     `};
 

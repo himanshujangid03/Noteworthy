@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faNoteSticky } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBookmark,
+  faNoteSticky,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Note.css";
 import { useContext } from "react";
 import AuthContext from "../../utils/auth-context";
-
-const iconStyle = {
-  cursor: "pointer",
-  color: "white",
-};
+import Button from "../../ui/Button";
 
 function Note({ item }) {
   const ctx = useContext(AuthContext);
@@ -20,14 +20,18 @@ function Note({ item }) {
     day: "numeric",
   };
   const formatDate = date.toLocaleString("en-US", options);
-  const addToFavouritesHandler = () => {
-    ctx.favourites.some((el) => {
-      if (el._id !== item._id) {
-        ctx.setFavourites((el) => {
-          return [...el, item];
-        });
-      }
+  const addToFavouritesHandler = (item) => {
+    const noteItemId = ctx.favourites.some((el) => {
+      if (el._id === item._id) return true;
+      else return false;
     });
+    if (!noteItemId) {
+      ctx.setFavourites((el) => {
+        return [...el, item];
+      });
+    } else {
+      alert("This note is already to favourites!");
+    }
     localStorage.setItem("favourites", JSON.stringify(ctx.favourites));
   };
 
@@ -42,8 +46,12 @@ function Note({ item }) {
           />{" "}
           {item.title}
         </li>
-        <span onClick={addToFavouritesHandler}>
-          <FontAwesomeIcon icon={faBookmark} style={iconStyle} />
+        <span
+          onClick={() => addToFavouritesHandler(item)}
+          type="favbtn"
+          responsive="isMobile"
+        >
+          <FontAwesomeIcon icon={faBookmark} size="lg" />
         </span>
       </div>
       <li className="note__content">{item.content}</li>

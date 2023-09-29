@@ -1,7 +1,8 @@
 .new-note {
-  padding: 0.5rem;
+  padding: 1rem;
   margin: 0rem;
   border-radius: 1.5rem;
+  background-color: white;
 }
 
 .new-note Form {
@@ -16,20 +17,31 @@
   padding: 1rem;
   margin: 0.5rem;
   border: 1px solid rgb(233, 233, 233);
+  background-color: rgb(236, 236, 236);
   border-radius: 0.6rem;
   outline: none;
+  transition: all 0.2s;
   font-size: 1.2rem;
 }
+
+.new-note Form input:focus {
+  border: 2px solid black;
+}
+
 .new-note Form textarea {
   font-size: 1.2rem;
   margin: 0.5rem;
   padding: 1rem;
   overflow-y: scroll;
   border: 1px solid rgb(230, 230, 230);
+  background-color: rgb(236, 236, 236);
   border-radius: 0.6rem;
   outline: none;
 }
 
+.new-note Form textarea:focus {
+  border: 2px solid black;
+}
 /* -------------------- MEDIA QUERY ----------------------------*/
 
 @media only screen and (max-width: 600px) {

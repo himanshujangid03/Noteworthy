@@ -8,7 +8,6 @@ const Button = styled.button`
   min-width: 5rem;
   border: none;
   border-radius: 0.6rem;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-family: Montserrat;
@@ -17,11 +16,11 @@ const Button = styled.button`
   ${(props) =>
     props.type === "deletebtn" &&
     css`
-      background-color: #ae445a;
+      background-color: #c70039;
       color: white;
 
       &:hover {
-        background-color: #813241;
+        background-color: #952323;
       }
     `};
 
@@ -32,6 +31,7 @@ const Button = styled.button`
       padding: 1rem;
       color: white;
       width: 10rem;
+      margin: 1rem 0 1rem 0;
 
       &:hover {
         background-color: #2c5191;
@@ -43,7 +43,7 @@ const Button = styled.button`
     css`
       background-color: white;
       border: 1px solid #c0c0c0;
-      padding: 0.5rem 1rem 0.5rem 1rem;
+      padding: 0 1rem 0 1rem;
       font-weight: 500;
 
       &:hover {
@@ -66,8 +66,11 @@ const Button = styled.button`
     props.type === "authbtn" &&
     css`
       background-color: #000;
+      padding: 0.8rem;
+      min-width: 8rem;
       color: white;
     `};
+
   ${(props) =>
     props.responsive === "isMobile" &&
     css`

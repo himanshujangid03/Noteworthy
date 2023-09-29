@@ -8,24 +8,34 @@ import {
 import "./form.css";
 import { loginApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../utils/auth-context";
-import Logout from "./Logout";
-import Button from "../../ui/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import ModalDiv from "../../ui/ModalDiv";
 
 function Login() {
   const navigation = useNavigation();
   const isLogin = navigation.state === "submitting";
+  const [error, setError] = useState(false);
   const data = useActionData();
 
-  useEffect(() => {
+  const setErrorHandler = () => {
     if (data) {
+      setError(true);
       ctx.setRefresh(true);
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    setErrorHandler();
+    setTimeout(() => {
+      setError(false);
+      ctx.setRefresh(true);
+    }, 1000);
+  }, [isLogin]);
 
   const ctx = useContext(AuthContext);
-  const user = ctx.user;
 
   return (
     <div className="form">
@@ -36,6 +46,7 @@ function Login() {
         <div>
           <Form method="post">
             <h1>Login to your account</h1>
+            {error && <ModalDiv data={data} />}
             <input
               name="email"
               type="email"
@@ -46,9 +57,9 @@ function Login() {
               type="password"
               placeholder="Enter your password"
             />
-            <Button type="authbtn" className={`${isLogin ? "loading" : ""}`}>
+            <button className={`${isLogin ? "loading" : ""}`}>
               {isLogin ? <Loader /> : "Submit"}
-            </Button>
+            </button>
             <p>
               Don't have an account! <Link to={"/signup"}>Signup</Link>
             </p>

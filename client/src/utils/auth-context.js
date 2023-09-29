@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { json } from "react-router-dom";
 
 const AuthContext = React.createContext({
   user: Object,
@@ -8,12 +9,15 @@ const AuthContext = React.createContext({
   setRefresh: () => {},
   query: String,
   setQuery: () => {},
+  showSidePanel: Boolean,
+  setShowSidePanel: () => {},
 });
 
 export const AuthContextProvider = (props) => {
   const [query, setQuery] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [favourites, setFavourites] = useState([]);
+  const [showSidePanel, setShowSidePanel] = useState(false);
   const [user, setUser] = useState(false);
   const fetchIsLoggedHandler = async () => {
     const response = await fetch("http://localhost:4000/user/profile", {
@@ -21,7 +25,7 @@ export const AuthContextProvider = (props) => {
       credentials: "include",
     });
     if (!response.ok) {
-      return null;
+      return response;
     }
 
     const resData = await response.json();
@@ -33,7 +37,7 @@ export const AuthContextProvider = (props) => {
   };
   useEffect(() => {
     fetchIsLoggedHandler();
-  }, []);
+  }, [refresh]);
   return (
     <>
       <AuthContext.Provider
@@ -45,6 +49,8 @@ export const AuthContextProvider = (props) => {
           setFavourites: setFavourites,
           query: query,
           setQuery: setQuery,
+          showSidePanel: showSidePanel,
+          setShowSidePanel: setShowSidePanel,
         }}
       >
         {props.children}

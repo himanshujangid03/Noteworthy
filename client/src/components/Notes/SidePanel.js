@@ -7,25 +7,39 @@ import {
   faPenToSquare,
   faPlus,
   faRightFromBracket,
+  faX,
 } from "@fortawesome/free-solid-svg-icons";
 import "./SidePanel.css";
 import Logo from "../../assets/NoteWorthy-logos_black.png";
 import Logout from "../Authentication/Logout";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../../utils/auth-context";
 
 function SidePanel() {
   const [toggleModal, setToggleModal] = useState(false);
+  const ctx = useContext(AuthContext);
   const NavLinkClass = ({ isActive }) => {
     return isActive ? "active" : "";
   };
 
+  function logoutbtnHandler() {
+    ctx.setShowSidePanel(false);
+    setToggleModal(true);
+  }
+
   return (
     <>
       {toggleModal && <Logout onClose={setToggleModal} />}
-      <div className="side-panel">
+      <div className={`side-panel ${ctx.showSidePanel ? "offcanvas" : ""}`}>
+        <button
+          className="editModal__closebtn offcanvas-btn"
+          onClick={() => ctx.setShowSidePanel(false)}
+        >
+          <FontAwesomeIcon icon={faX} />
+        </button>
         <div className="side-panel__info">
           <img className="logo" src={Logo} alt={Logo} />
-          <Link to={"/home/new"}>
+          <Link to={"/home/new"} onClick={() => ctx.setShowSidePanel(false)}>
             <button className="create-note-btn">
               <FontAwesomeIcon icon={faPlus} style={{ marginRight: "1rem" }} />
               Create
@@ -34,13 +48,21 @@ function SidePanel() {
           <div className="hl"></div>
         </div>
         <div className="side-panel__navlinks">
-          <NavLink className={NavLinkClass} to={"/home/"}>
+          <NavLink
+            className={NavLinkClass}
+            to={"/home/"}
+            onClick={() => ctx.setShowSidePanel(false)}
+          >
             <p>
               <FontAwesomeIcon icon={faHouse} style={{ marginRight: "1rem" }} />
               Dashboard
             </p>
           </NavLink>
-          <NavLink className={NavLinkClass} to={"/home/get-notes"}>
+          <NavLink
+            className={NavLinkClass}
+            to={"/home/get-notes"}
+            onClick={() => ctx.setShowSidePanel(false)}
+          >
             <p>
               <FontAwesomeIcon
                 icon={faNoteSticky}
@@ -50,7 +72,11 @@ function SidePanel() {
             </p>
           </NavLink>
 
-          <NavLink className={NavLinkClass} to={"/home/edit"}>
+          <NavLink
+            className={NavLinkClass}
+            to={"/home/edit"}
+            onClick={() => ctx.setShowSidePanel(false)}
+          >
             <p>
               <FontAwesomeIcon
                 icon={faPenToSquare}
@@ -59,7 +85,11 @@ function SidePanel() {
               Edit Notes
             </p>
           </NavLink>
-          <NavLink className={NavLinkClass} to={"/home/fav"}>
+          <NavLink
+            className={NavLinkClass}
+            to={"/home/fav"}
+            onClick={() => ctx.setShowSidePanel(false)}
+          >
             <p>
               <FontAwesomeIcon
                 icon={faBookmark}
@@ -68,7 +98,7 @@ function SidePanel() {
               Favourites
             </p>
           </NavLink>
-          <p className="log-out-btn" onClick={() => setToggleModal(true)}>
+          <p className="log-out-btn" onClick={logoutbtnHandler}>
             <FontAwesomeIcon
               icon={faRightFromBracket}
               style={{ marginRight: "1rem" }}

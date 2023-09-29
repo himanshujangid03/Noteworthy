@@ -3,6 +3,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 1rem;
+  background-color: #c3d6ff3a;
+  border-radius: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .note {
@@ -12,6 +15,7 @@
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
   gap: 0.5rem;
 }
 
@@ -21,11 +25,18 @@
 }
 .note .note__div1 span {
   height: fit-content;
-  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  padding: 0.4rem 0.7rem 0.4rem 0.7rem;
   border-radius: 10rem;
-  background-color: rgba(37, 99, 235, 1);
+  transition: all 0.3s;
+  color: black;
+  cursor: pointer;
 }
 .note .note__div1 span:hover {
+  color: #3866ff;
+}
+
+.note .note__div1 span.favourite {
+  color: #3866ff;
 }
 
 .note__title {
@@ -37,6 +48,8 @@
 .note__content {
   font-size: 1.1rem;
   margin: 0 0 1rem 0;
+  height: 8rem;
+  overflow-y: scroll;
 }
 
 .note__date {
@@ -46,12 +59,12 @@
 
 /* ------------------ MEDIA QUERY --------------------------*/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .notes {
-    padding: 0;
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
   }
 
   .note {
-    padding: 0;
   }
 }

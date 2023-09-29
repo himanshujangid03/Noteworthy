@@ -43,10 +43,8 @@
 }
 
 .AuthPage .AuthPage__info h1 strong {
-  font-weight: 300;
   /* -webkit-text-fill-color: transparent;
   -webkit-background-clip: text; */
-  font-style: italic;
 }
 
 .AuthPage .AuthPage__info div {
@@ -74,12 +72,43 @@
   background-color: black;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .AuthPage {
     font-size: small;
   }
 
   .AuthPage .AuthPage__info div {
-    flex-direction: column;
+    flex-direction: row;
+  }
+
+  .AuthPage .AuthPage__info .p-get-started {
+    font-size: 1.2rem;
+  }
+
+  .AuthPage .AuthPage__info h1 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 1rem;
+  }
+
+  .AuthPage .AuthPage__info div button {
+    padding: 0.6rem;
+    width: 10rem;
+    max-width: 90%;
+    font-size: 1rem;
+    margin: 0.8rem auto;
+  }
+  .AuthPage .AuthPage__info img {
+    width: 10rem;
+  }
+
+  .AuthPage .AuthPage__info .p-tagline {
+    margin: 1rem auto;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    background-color: #036296;
+    color: white;
+    width: fit-content;
   }
 }

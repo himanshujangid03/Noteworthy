@@ -6,19 +6,41 @@
   padding: 1rem;
 }
 
+.offcanvas-btn {
+  display: none;
+  background-color: #c3d6ff00;
+  color: white;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  border: none;
+  transition: all 0.2s;
+  float: right;
+}
+.offcanvas-btn:hover {
+  background-color: #c3d6ff;
+  color: black;
+}
+
 .topheader input {
-  padding: 0.6rem;
+  padding: 0.8rem;
   margin: 0 1rem 0 0;
-  width: 20rem;
+  width: 15rem;
   max-width: 90%;
   border: none;
   outline: none;
-  background-color: #ffffff;
-  border-radius: 0.5rem;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  background-color: #c3d6ff;
+  border-radius: 1rem;
+  box-shadow: rgba(146, 146, 146, 0.432) 0px 2px 14px;
   font-size: 1.2rem;
   font-family: "Montserrat";
   font-weight: 500;
+  transition: all 0.3s;
+}
+
+.topheader input:focus {
+  border: 2px solid #071952;
+  width: 40rem;
 }
 
 .topheader .user-info {
@@ -36,6 +58,10 @@
 /* ------------------ MEDIA QUERY --------------------------*/
 
 @media only screen and (max-width: 600px) {
+  .topheader {
+    background-color: #071952;
+    margin: 0;
+  }
   .topheader .user-info {
     display: none;
   }
@@ -43,5 +69,14 @@
   .topheader input {
     width: 10rem;
     font-size: 0.8rem;
+  }
+  .topheader input:focus {
+    width: 10rem;
+    border: none;
+    transform: translateY(-2px);
+  }
+
+  .offcanvas-btn {
+    display: initial;
   }
 }

@@ -7,6 +7,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { logoutApi } from "../../utils/api";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../utils/auth-context";
+import ModalDiv from "../../ui/ModalDiv";
 
 function Logout({ onClose }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +41,7 @@ function Logout({ onClose }) {
       <div className="modal">
         <div className="overlay" onClick={() => onClose(false)}></div>
         <div className="modal-content">
-          <div className="logout-form">
+          <ModalDiv type="grid2">
             <div>
               <Link to={""}>
                 <button
@@ -54,14 +55,16 @@ function Logout({ onClose }) {
               <p>This will permanently remove the selected item.</p>
             </div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button type="cancelbtn">Cancel</Button>
+              <Button type="cancelbtn" onClick={() => onClose(false)}>
+                Cancel
+              </Button>
               <form method="post" onSubmit={submitHandler}>
                 <Button type="authbtn">
                   {isLoading ? <Loader /> : "Log Out"}
                 </Button>
               </form>
             </div>
-          </div>
+          </ModalDiv>
         </div>
       </div>
     </>

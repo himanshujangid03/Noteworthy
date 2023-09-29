@@ -12,19 +12,18 @@ function NewNote(props) {
   return (
     <>
       <div className="new-note">
-        <Heading as={"h3"}>Create new note</Heading>
+        <Heading as={"h2"}>Create new note</Heading>
         <Br />
         <Form method="post">
-          <input type="text" name="title" placeholder="Title" />
+          <input type="text" name="title" placeholder="Title" required />
           <textarea
             type="text"
             rows={"13"}
             name="content"
             placeholder="Content"
+            required
           />
-          <Button type="createbtn">{`${
-            isLoading ? <Loader /> : "Submit"
-          } `}</Button>
+          <Button type="createbtn">{isLoading ? <Loader /> : "Submit"}</Button>
         </Form>
       </div>
     </>

@@ -3,6 +3,8 @@ import "./TopHeader.css";
 import AuthContext from "../../utils/auth-context";
 import { Link } from "react-router-dom";
 import UserSvg from "../../ui/UserSvg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 function TopHeader() {
   const ctx = useContext(AuthContext);
@@ -19,6 +21,12 @@ function TopHeader() {
             value={ctx.query}
             onChange={(e) => ctx.setQuery(e.target.value)}
           />
+          <button
+            className="offcanvas-btn"
+            onClick={() => ctx.setShowSidePanel((el) => !el)}
+          >
+            <FontAwesomeIcon icon={faBars} size="xl" />
+          </button>
         </div>
         <div className="user-info">
           <UserSvg />

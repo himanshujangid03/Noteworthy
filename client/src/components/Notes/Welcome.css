@@ -3,6 +3,7 @@
   padding: 1.5rem;
   border-radius: 1.5rem;
   background-color: white;
+  box-shadow: rgb(0, 0, 0) 0px 5px 10px;
   width: min-content;
 }
 
