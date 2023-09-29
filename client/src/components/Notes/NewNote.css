@@ -1,2 +1,50 @@
 .new-note {
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1.5rem;
+  filter: drop-shadow(0 0 0.45rem rgba(0, 0, 0, 0.075));
+}
+
+.new-note Form {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: flex-end;
+}
+
+.new-note Form input {
+  width: 20rem;
+  padding: 1rem;
+  margin: 0.5rem;
+  border: 1px solid rgb(233, 233, 233);
+  border-radius: 0.6rem;
+  outline: none;
+  font-size: 1.2rem;
+}
+.new-note Form textarea {
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  padding: 1rem;
+  overflow-y: scroll;
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 0.6rem;
+  outline: none;
+}
+.new-note Form button {
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  width: 15rem;
+  padding: 0.6rem;
+  border: 1px solid rgb(228, 228, 228);
+  border-radius: 1rem;
+  font-family: "Montserrat";
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  background-color: rgb(48, 48, 48);
+  transition: all 0.2s;
+  color: white;
+}
+.new-note Form button:hover {
+  background-color: rgb(0, 0, 0);
 }

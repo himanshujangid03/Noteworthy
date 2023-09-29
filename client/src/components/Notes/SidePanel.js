@@ -27,9 +27,6 @@ function SidePanel() {
 
   return (
     <>
-      <Modal>
-        <Logout />
-      </Modal>
       <div className="side-panel">
         <div className="side-panel__info">
           <img className="logo" src={Logo} alt={Logo} />

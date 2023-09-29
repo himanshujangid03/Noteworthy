@@ -9,7 +9,7 @@
 .AuthPage .AuthPage__info {
   display: flex;
   flex-direction: column;
-  width: 60rem;
+  width: 80rem;
   max-width: 95%;
   margin: auto;
   text-align: center;
@@ -23,8 +23,8 @@
 }
 
 .AuthPage .AuthPage__info h1 {
-  font-size: 4rem;
-  font-weight: 900;
+  font-size: 5rem;
+  font-weight: 300;
 }
 .AuthPage .AuthPage__info .p-tagline {
   margin: 1rem auto;
@@ -38,10 +38,12 @@
 
 .AuthPage .AuthPage__info .p-get-started {
   font-size: 3rem;
+  letter-spacing: 0.5rem;
+  font-weight: 600;
 }
 
 .AuthPage .AuthPage__info h1 strong {
-  font-weight: 900;
+  font-weight: 300;
   /* -webkit-text-fill-color: transparent;
   -webkit-background-clip: text; */
   font-style: italic;

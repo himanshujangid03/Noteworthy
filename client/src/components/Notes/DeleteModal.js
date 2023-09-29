@@ -1,35 +1,67 @@
-import { Form, redirect, useNavigation } from "react-router-dom";
-import { createNotesApi } from "../../utils/api";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { deleteNotesApi, editNotesApi } from "../../utils/api";
 import "./NewNote.css";
-import DotLoader from "../../ui/DotLoader";
-import { useContext } from "react";
-import AuthContext from "../../utils/auth-context";
+import Loader from "../../ui/Loader";
+import { useState } from "react";
+import "./DeleteModal.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import Button from "../../ui/Button";
 
 function EditNoteModal({ closeModal, item }) {
-  const navigation = useNavigation();
-  const isLoading = navigation.state === "submitting";
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const id = item._id;
+
+    const response = await fetch(deleteNotesApi + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    setTimeout(() => {
+      if (response.ok) {
+        navigate("");
+        closeModal(false);
+        setIsLoading(false);
+      }
+    }, 1000);
+  };
+
   return (
     <>
-      <div className="modal">
-        <div className="overlay" onClick={() => closeModal(false)}></div>
+      <div id="edit-modal" className="modal">
+        <Link to={""}>
+          <div className="overlay" onClick={() => closeModal(false)}></div>
+        </Link>
         <div className="modal-content">
-          <div className="new-note">
-            <Form method="post">
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                defaultValue={item.title}
-              />
-              <textarea
-                type="text"
-                rows={"13"}
-                name="content"
-                placeholder="Content"
-                defaultValue={item.content}
-              />
-              <button>{`${isLoading ? <DotLoader /> : "Submit"} `}</button>
-            </Form>
+          <div className="delete-note">
+            <div>
+              <Link to={""}>
+                <button
+                  className="editModal__closebtn"
+                  onClick={() => closeModal(false)}
+                >
+                  <FontAwesomeIcon icon={faX} />
+                </button>
+              </Link>
+              <h3>Are you sure you want to delete this item?</h3>
+              <p>This will permanently remove the selected item.</p>
+            </div>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button bg="white">Cancel</Button>
+              <form method="delete" onSubmit={submitHandler}>
+                <Button bg="#ae445a" txt="white">
+                  {isLoading ? <Loader /> : "Delete"}
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -38,26 +70,3 @@ function EditNoteModal({ closeModal, item }) {
 }
 
 export default EditNoteModal;
-
-export async function action({ request, parmas }) {
-  const data = await request.formData();
-  const noteData = {
-    title: data.get("title"),
-    content: data.get("content"),
-  };
-  console.log(noteData);
-
-  const response = await fetch(createNotesApi, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify(noteData),
-  });
-  if (!response.ok) {
-    return response;
-  }
-
-  return redirect("/home/get-notes");
-}

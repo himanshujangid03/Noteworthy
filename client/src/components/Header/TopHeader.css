@@ -20,27 +20,6 @@
   font-family: "Montserrat";
 }
 
-.topheader button {
-  padding: 0.6rem;
-  margin: 0 0rem 0 0;
-  font-size: 1.2rem;
-  width: 10rem;
-  border: none;
-  border-radius: 0.6rem;
-  background: rgb(46, 16, 101);
-  background: linear-gradient(
-    36deg,
-    rgba(46, 16, 101, 1) 37%,
-    rgba(55, 48, 163, 1) 97%
-  );
-  color: white;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
-  transition: all 0.1s ease-in-out;
-  cursor: pointer;
-  font-family: "Montserrat";
-  font-weight: 500;
-}
-
 .topheader .user-info {
   display: flex;
   flex-direction: row;

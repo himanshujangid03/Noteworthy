@@ -1,11 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {
+  faNoteSticky,
+  faPenToSquare,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Note.css";
-import { useContext, useState } from "react";
-import AuthContext from "../../utils/auth-context";
-import Modal from "../../ui/Modal";
+import { useState } from "react";
+
 import EditNoteModal from "./EditNoteModal";
-import { Link } from "react-router-dom";
+import DeleteModal from "./DeleteModal";
+import { Link, useSearchParams } from "react-router-dom";
+import Button from "../../ui/Button";
 
 const iconStyle = {
   margin: "0rem 1rem 0 0",
@@ -15,6 +20,7 @@ function Note({ item }) {
   const dateString = item.createdAt;
   const date = new Date(dateString);
   const [toggleEditModal, setToggleEditModal] = useState(false);
+  const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
 
   const options = {
     year: "numeric",
@@ -27,36 +33,54 @@ function Note({ item }) {
     setToggleEditModal(true);
   };
   const deleteNoteHandler = () => {
-    setToggleEditModal(true);
+    setToggleDeleteModal(true);
   };
   return (
     <>
       {toggleEditModal && (
         <EditNoteModal item={item} closeModal={setToggleEditModal} />
       )}
+      {toggleDeleteModal && (
+        <DeleteModal item={item} closeModal={setToggleDeleteModal} />
+      )}
+
       <div className="edit-note">
         <div className="edit-note__div1">
-          <li className="edit-note__title">🌟 {item.title}</li>
+          <li className="edit-note__title">
+            <FontAwesomeIcon
+              icon={faNoteSticky}
+              size="xl"
+              style={{ color: "#ffc800", margin: "0 1rem 0rem 0" }}
+            />{" "}
+            {item.title}
+          </li>
           <li className="edit-note__date">{formatDate}</li>
           <li>
             <Link to={`${item._id}`}>
-              <button className="edit-note__editbtn" onClick={editNoteHandler}>
+              <Button
+                onClick={editNoteHandler}
+                bg="#2c5191"
+                darkbg="#2c5191"
+                txt="white"
+              >
                 <FontAwesomeIcon
                   icon={faPenToSquare}
                   style={iconStyle}
                   size="sm"
                 />
                 Edit
-              </button>
+              </Button>
             </Link>
 
-            <button
-              className="edit-note__deletebtn"
+            <Button
               onClick={deleteNoteHandler}
+              bg="#ae445a"
+              darkbg="#813241"
+              txt="white"
             >
               <FontAwesomeIcon icon={faTrashCan} style={iconStyle} size="sm" />
               Delete
-            </button>
+            </Button>
           </li>
         </div>
       </div>

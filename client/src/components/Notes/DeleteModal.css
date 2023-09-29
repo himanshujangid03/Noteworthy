@@ -1,0 +1,16 @@
+.delete-note {
+  background-color: white;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 1.5rem;
+  filter: drop-shadow(0 0 0.45rem rgba(0, 0, 0, 0.075));
+  width: 30rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.delete-note p {
+  margin-top: 2rem;
+}

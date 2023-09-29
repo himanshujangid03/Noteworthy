@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 import "./Note.css";
+import { useContext } from "react";
+import AuthContext from "../../utils/auth-context";
 
 const iconStyle = {
   cursor: "pointer",
@@ -8,6 +10,7 @@ const iconStyle = {
 };
 
 function Note({ item }) {
+  const ctx = useContext(AuthContext);
   const dateString = item.createdAt;
   const date = new Date(dateString);
 
@@ -15,15 +18,31 @@ function Note({ item }) {
     year: "numeric",
     month: "long",
     day: "numeric",
-    //hour: "2-digit",
-    //minute: "2-digit",
   };
   const formatDate = date.toLocaleString("en-US", options);
+  const addToFavouritesHandler = () => {
+    const favorites = ctx.favorites.some((el) => {
+      if (el._id === item._id) return true;
+    });
+    if (!favorites)
+      ctx.setFavourites((el) => {
+        return [...el, item];
+      });
+    localStorage.setItem("favourites", JSON.stringify(ctx.favorites));
+  };
+
   return (
     <div className="note">
       <div className="note__div1">
-        <li className="note__title">🌟 {item.title}</li>
-        <span>
+        <li className="note__title">
+          <FontAwesomeIcon
+            icon={faNoteSticky}
+            size="xl"
+            style={{ color: "#ffc800", margin: "0 1rem 0rem 0" }}
+          />{" "}
+          {item.title}
+        </li>
+        <span onClick={addToFavouritesHandler}>
           <FontAwesomeIcon icon={faBookmark} style={iconStyle} />
         </span>
       </div>

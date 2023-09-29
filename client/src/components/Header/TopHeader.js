@@ -16,9 +16,6 @@ function TopHeader() {
             placeholder="Search for your notes..."
             style={{ fontStyle: "italic" }}
           />
-          <Link to={"/home/new"}>
-            <button>Add New</button>
-          </Link>
         </div>
         <div className="user-info">
           <UserSvg />

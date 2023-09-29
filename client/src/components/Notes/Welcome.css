@@ -1,4 +1,8 @@
 .welcome {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: white;
 }
 
 .welcome h3 {

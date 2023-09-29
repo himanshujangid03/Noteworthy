@@ -1,8 +1,7 @@
-import { Await, useRouteLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import { getNotesApi } from "../../utils/api";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Note from "./Note";
-import Loader from "../../ui/Loader";
 import "./GetNote.css";
 
 function GetNotes() {
@@ -21,26 +20,21 @@ function GetNotes() {
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <Await>
-          <div>
-            {sortedNotes.length > 0 ? (
-              <>
-                <ul className="notes">
-                  {notesData.map((item) => (
-                    <Note key={item._id} item={item} />
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <p>
-                Either you are not logged In or You did not create notes till
-                now!
-              </p>
-            )}
-          </div>
-        </Await>
-      </Suspense>
+      <div>
+        {sortedNotes.length > 0 ? (
+          <>
+            <ul className="notes">
+              {notesData.map((item) => (
+                <Note key={item._id} item={item} />
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p>
+            Either you are not logged In or You did not create notes till now!
+          </p>
+        )}
+      </div>
     </>
   );
 }

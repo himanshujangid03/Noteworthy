@@ -9,6 +9,7 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
+  const [query, setQuery] = useState("");
   const [toggleModal, setToggleModal] = useState(false);
   const [favorites, setFavourites] = useState([]);
   const [user, setUser] = useState(false);
@@ -40,6 +41,8 @@ export const AuthContextProvider = (props) => {
           setToggleModal: setToggleModal,
           favorites: favorites,
           setFavourites: setFavourites,
+          query: query,
+          setQuery: setQuery,
         }}
       >
         {props.children}

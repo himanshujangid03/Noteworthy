@@ -1,16 +1,23 @@
-import { useContext } from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useNavigation } from "react-router-dom";
 import { createNotesApi } from "../../utils/api";
 import "./NewNote.css";
+import Loader from "../../ui/Loader";
 
 function NewNote(props) {
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "submitting";
   return (
     <>
       <div className="new-note">
         <Form method="post">
-          <input type="text" name="title" />
-          <input type="text" name="content" />
-          <button>Add</button>
+          <input type="text" name="title" placeholder="Title" />
+          <textarea
+            type="text"
+            rows={"13"}
+            name="content"
+            placeholder="Content"
+          />
+          <button>{`${isLoading ? <Loader /> : "Submit"} `}</button>
         </Form>
       </div>
     </>

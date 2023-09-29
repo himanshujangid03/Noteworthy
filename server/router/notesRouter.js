@@ -17,6 +17,6 @@ router
 
 router
   .route("/delete-note/:id")
-  .patch(authController.isLoggedIn, notesController.updateNote);
+  .delete(authController.isLoggedIn, notesController.deleteNote);
 
 module.exports = router;
