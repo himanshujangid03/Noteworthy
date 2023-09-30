@@ -1,17 +1,19 @@
-import { Await, Link, useRouteLoaderData } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 import { getNotesApi } from "../../utils/api";
-import { Suspense, useContext, useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import Note from "./Note";
 import "./GetNote.css";
 import AuthContext from "../../utils/auth-context";
 import CenterDiv from "../../ui/CenterDiv";
-import noDataImage from "../../assets/no-data.svg";
 import Heading from "../../ui/Heading";
 import Button from "../../ui/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 
 function GetNotes() {
   const data = useRouteLoaderData("get-notes");
   const [notesData, setNotesData] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const ctx = useContext(AuthContext);
 
   useEffect(() => {
@@ -20,25 +22,46 @@ function GetNotes() {
     }
   }, [data]);
 
-  const sortedNotes = notesData
-    ? notesData.sort((a, b) => {
-        const timestampA = new Date(a.createdAt);
-        const timestampB = new Date(b.createdAt);
-        return timestampB - timestampA;
-      })
-    : notesData;
+  const sortedNotes = notesData.sort((a, b) => {
+    const timestampA = new Date(a.createdAt);
+    const timestampB = new Date(b.createdAt);
+    return timestampB - timestampA;
+  });
 
-  const filteredNotes = sortedNotes
+  const filteredNotes = ctx.query
     ? sortedNotes.filter((item) =>
         item.title.toLowerCase().includes(ctx.query.toLowerCase())
       )
     : sortedNotes;
+
+  function refreshBtnHandler() {
+    setRefresh(true);
+    setTimeout(() => {
+      setRefresh(false);
+    }, 1000);
+  }
 
   return (
     <>
       <div>
         {filteredNotes.length > 0 ? (
           <>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr auto",
+                marginBottom: "1rem",
+              }}
+            >
+              <Heading as={"h2"} style={{ color: "white" }}>
+                Explore Your Notes
+              </Heading>
+              <Link to={""}>
+                <Button type="refreshbtn" onClick={refreshBtnHandler}>
+                  <FontAwesomeIcon icon={faArrowsRotate} spin={refresh} />
+                </Button>
+              </Link>
+            </div>
             <ul className="notes">
               {filteredNotes.map((item) => (
                 <Note key={item._id} item={item} />
@@ -47,8 +70,10 @@ function GetNotes() {
           </>
         ) : (
           <CenterDiv>
-            <Heading as="h2">No notes found in your collection.</Heading>
-            <Link to={"/home/new"}>
+            <Heading style={{ color: "white" }} as="h2">
+              No notes found in your collection.
+            </Heading>
+            <Link to={"/home/note"}>
               <Button type="createbtn">Create New</Button>
             </Link>
           </CenterDiv>

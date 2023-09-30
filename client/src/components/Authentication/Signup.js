@@ -2,7 +2,7 @@ import { Form, Link, redirect, useNavigation } from "react-router-dom";
 import "./form.css";
 import { signupApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
-import Button from "../../ui/Button";
+
 
 function Signup() {
   const navigation = useNavigation();

@@ -1,5 +1,5 @@
-import { Link, useNavigate, useNavigation } from "react-router-dom";
-import { deleteNotesApi, editNotesApi } from "../../utils/api";
+import { Link, useNavigate} from "react-router-dom";
+import { deleteNotesApi} from "../../utils/api";
 import "./NewNote.css";
 import Loader from "../../ui/Loader";
 import { useState } from "react";

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout, { userLoader } from "./Pages/RootLayout";
 import Error from "./Pages/Error";
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    loader: userLoader,
     errorElement: <Error />,
   },
   {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
             errorElement: <Error />,
             children: [{ path: ":id", element: <EditNoteModal /> }],
           },
-          { path: "fav", element: <Favourites /> },
+          { path: "fav", element: <Favourites />, errorElement: <Error /> },
         ],
       },
     ],

@@ -5,7 +5,7 @@ import Button from "../../ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { logoutApi } from "../../utils/api";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../utils/auth-context";
 import ModalDiv from "../../ui/ModalDiv";
 

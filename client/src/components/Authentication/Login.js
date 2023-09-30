@@ -4,13 +4,12 @@ import {
   redirect,
   useActionData,
   useNavigation,
-  useRouteLoaderData,
+  
 } from "react-router-dom";
 import "./form.css";
-import { loginApi, usernameApi } from "../../utils/api";
+import { loginApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../utils/auth-context";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 

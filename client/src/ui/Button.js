@@ -5,7 +5,7 @@ const Button = styled.button`
   padding: 0.5rem 1rem 0.5rem 1rem;
   outline: none;
   font-size: 1.2rem;
-  min-width: 5rem;
+  width: 5rem;
   border: none;
   border-radius: 0.6rem;
   transition: all 0.2s ease-in-out;
@@ -13,10 +13,16 @@ const Button = styled.button`
   font-family: Montserrat;
   font-weight: 400;
 
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
   ${(props) =>
     props.type === "deletebtn" &&
     css`
       background-color: #c70039;
+      width: 8rem;
       color: white;
 
       &:hover {
@@ -36,6 +42,13 @@ const Button = styled.button`
       &:hover {
         background-color: #2c5191;
       }
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+        width: 5rem;
+        padding: 0.6rem;
+        margin-top: 1rem;
+      }
     `};
 
   ${(props) =>
@@ -43,6 +56,7 @@ const Button = styled.button`
     css`
       background-color: white;
       border: 1px solid #c0c0c0;
+      width: 6rem;
       padding: 0 1rem 0 1rem;
       font-weight: 500;
 
@@ -56,6 +70,7 @@ const Button = styled.button`
     props.type === "editbtn" &&
     css`
       background-color: #337ccf;
+      width: 7rem;
       color: white;
       &:hover {
         background-color: #2c5191;
@@ -67,8 +82,38 @@ const Button = styled.button`
     css`
       background-color: #000;
       padding: 0.8rem;
-      min-width: 8rem;
+      width: 8rem;
       color: white;
+    `};
+
+  ${(props) =>
+    props.type === "refreshbtn" &&
+    css`
+      background-color: #d3d3d3;
+      color: #000;
+      padding: 0.5rem;
+      width: 3rem;
+      margin-bottom: 1rem;
+      align-self: end;
+
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    `};
+  ${(props) =>
+    props.type === "removeFavbtn" &&
+    css`
+      background-color: #fecaca;
+      color: #dc2626;
+      padding: 0.5rem;
+      width: 2.5rem;
+      margin-bottom: 1rem;
+
+      &:hover {
+        background-color: #f87171;
+        color: #7f1d1d;
+      }
     `};
 
   ${(props) =>
@@ -78,11 +123,6 @@ const Button = styled.button`
         display: none;
       }
     `};
-
-  @media (max-width: 500px) {
-    font-size: 0.9rem;
-    margin-top: 1rem;
-  }
 `;
 
 export default Button;

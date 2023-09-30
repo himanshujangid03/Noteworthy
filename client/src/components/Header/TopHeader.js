@@ -10,6 +10,12 @@ function TopHeader() {
   const ctx = useContext(AuthContext);
   const data = useRouteLoaderData("loginData");
 
+  useEffect(() => {
+    if (data) {
+      ctx.setUser(data);
+    }
+  }, [data]);
+
   return (
     <>
       <div className="topheader">

@@ -52,5 +52,5 @@ export async function action({ request, parmas }) {
     return response;
   }
 
-  return redirect("/home/get-notes");
+  return redirect("/home/note/get-notes");
 }

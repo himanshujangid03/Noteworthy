@@ -1,8 +1,5 @@
 import { useRouteLoaderData } from "react-router-dom";
-import { usernameApi } from "../../utils/api";
 import "./Welcome.css";
-import { useContext, useEffect } from "react";
-import AuthContext from "../../utils/auth-context";
 
 function Welcome() {
   const data = useRouteLoaderData("loginData");

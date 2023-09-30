@@ -50,8 +50,10 @@
 }
 
 .topheader .user-info P {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: black;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
   margin: 0 0 0 1rem;
 }
 

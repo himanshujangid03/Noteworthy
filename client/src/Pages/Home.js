@@ -3,16 +3,14 @@ import SidePanel from "../components/Notes/SidePanel";
 import "./Home.css";
 import TopHeader from "../components/Header/TopHeader";
 import NotAuthModal from "../components/Authentication/NotAuthModal";
-import { useContext } from "react";
-import AuthContext from "../utils/auth-context";
 
 function Home() {
-  const data = useRouteLoaderData();
+  const data = useRouteLoaderData("loginData");
 
   //const ctx = useContext(AuthContext);
   return (
     <>
-      {data && data.name && <NotAuthModal />}
+      {data && !data.name && <NotAuthModal />}
       <div className="home">
         <SidePanel />
         <div className="home__right">
