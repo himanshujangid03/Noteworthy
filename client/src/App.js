@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout, { userLoader } from "./Pages/RootLayout";
+import RootLayout from "./Pages/RootLayout";
 import Error from "./Pages/Error";
 import Login, {
   action as loginAction,
@@ -7,7 +7,7 @@ import Login, {
 import Signup, {
   action as signupAction,
 } from "./components/Authentication/Signup";
-import Home from "./Pages/Home";
+import Home, { userLoader } from "./Pages/Home";
 import NewNote, {
   action as createNewNoteAction,
 } from "./components/Notes/NewNote";
