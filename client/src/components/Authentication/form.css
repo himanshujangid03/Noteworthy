@@ -77,6 +77,10 @@
   transition: 0.2s ease-in-out;
   margin: 1rem auto;
 }
+.form Form button {
+  background-color: white;
+  color: black;
+}
 
 .form Form button:hover {
   color: white;

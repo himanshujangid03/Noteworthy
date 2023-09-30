@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./Pages/RootLayout";
+import RootLayout, { userLoader } from "./Pages/RootLayout";
 import Error from "./Pages/Error";
 import Login, {
   action as loginAction,
@@ -17,7 +17,7 @@ import Welcome from "./components/Notes/Welcome";
 import Favourites from "./components/Notes/Favourites";
 import { loader as getNotesLoader } from "./components/Notes/GetNotes";
 import EditNoteModal from "./components/Notes/EditNoteModal";
-const GetNotes = React.lazy(() => import("./components/Notes/GetNotes"));
+import GetNotes from "./components/Notes/GetNotes";
 
 const router = createBrowserRouter([
   {
@@ -28,32 +28,30 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+    id: "loginData",
+    loader: userLoader,
     errorElement: <Error />,
-    id: "get-notes",
-    loader: getNotesLoader,
     children: [
-      { index: true, element: <Welcome /> },
-      { path: "new", element: <NewNote />, action: createNewNoteAction },
+      { index: true, id: "login-Data", element: <Welcome /> },
       {
-        path: "get-notes",
-        element: (
-          <Suspense fallback={<p>Loading...</p>}>
-            <GetNotes />
-          </Suspense>
-        ),
-        errorElement: <Error />,
+        path: "note",
+        id: "get-notes",
+        loader: getNotesLoader,
+        children: [
+          { index: true, element: <NewNote />, action: createNewNoteAction },
+          { path: "get-notes", element: <GetNotes />, errorElement: <Error /> },
+          {
+            path: "edit",
+            element: <EditNote />,
+            errorElement: <Error />,
+            children: [{ path: ":id", element: <EditNoteModal /> }],
+          },
+          { path: "fav", element: <Favourites /> },
+        ],
       },
-      {
-        path: "edit",
-        element: <EditNote />,
-        errorElement: <Error />,
-        children: [{ path: ":id", element: <EditNoteModal /> }],
-      },
-
-      { path: "fav", element: <Favourites /> },
     ],
   },
-  { path: "/login", element: <Login />, id: "loginData", action: loginAction },
+  { path: "/login", element: <Login />, action: loginAction },
   { path: "/signup", element: <Signup />, action: signupAction },
 ]);
 

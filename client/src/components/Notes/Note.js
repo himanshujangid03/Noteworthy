@@ -1,15 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBookmark,
-  faNoteSticky,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 import "./Note.css";
 import { useContext } from "react";
 import AuthContext from "../../utils/auth-context";
-import Button from "../../ui/Button";
 
-function Note({ item }) {
+function Note({ item, removeFavourites }) {
   const ctx = useContext(AuthContext);
   const dateString = item.createdAt;
   const date = new Date(dateString);
@@ -35,6 +30,11 @@ function Note({ item }) {
     localStorage.setItem("favourites", JSON.stringify(ctx.favourites));
   };
 
+  function favouritesNotesHandler(item) {
+    addToFavouritesHandler(item);
+    removeFavourites(item);
+  }
+
   return (
     <div className="note">
       <div className="note__div1">
@@ -47,7 +47,7 @@ function Note({ item }) {
           {item.title}
         </li>
         <span
-          onClick={() => addToFavouritesHandler(item)}
+          onClick={() => favouritesNotesHandler(item)}
           type="favbtn"
           responsive="isMobile"
         >

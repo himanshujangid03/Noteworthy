@@ -39,7 +39,7 @@ function SidePanel() {
         </button>
         <div className="side-panel__info">
           <img className="logo" src={Logo} alt={Logo} />
-          <Link to={"/home/new"} onClick={() => ctx.setShowSidePanel(false)}>
+          <Link to={"/home/note"} onClick={() => ctx.setShowSidePanel(false)}>
             <button className="create-note-btn">
               <FontAwesomeIcon icon={faPlus} style={{ marginRight: "1rem" }} />
               Create
@@ -60,7 +60,7 @@ function SidePanel() {
           </NavLink>
           <NavLink
             className={NavLinkClass}
-            to={"/home/get-notes"}
+            to={"/home/note/get-notes"}
             onClick={() => ctx.setShowSidePanel(false)}
           >
             <p>
@@ -74,7 +74,7 @@ function SidePanel() {
 
           <NavLink
             className={NavLinkClass}
-            to={"/home/edit"}
+            to={"/home/note/edit"}
             onClick={() => ctx.setShowSidePanel(false)}
           >
             <p>
@@ -87,7 +87,7 @@ function SidePanel() {
           </NavLink>
           <NavLink
             className={NavLinkClass}
-            to={"/home/fav"}
+            to={"/home/note/fav"}
             onClick={() => ctx.setShowSidePanel(false)}
           >
             <p>

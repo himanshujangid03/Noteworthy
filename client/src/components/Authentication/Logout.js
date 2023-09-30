@@ -31,7 +31,6 @@ function Logout({ onClose }) {
         navigate("/");
         onClose(false);
         setIsLoading(false);
-        ctx.setRefresh((el) => !el);
       }
     }, 1000);
   };

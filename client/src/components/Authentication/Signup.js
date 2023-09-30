@@ -51,7 +51,8 @@ export async function action({ request, params }) {
   const data = await request.formData();
 
   const userData = {
-    username: data.get("username"),
+    name: data.get("name"),
+    email: data.get("email"),
     password: data.get("password"),
   };
   const response = await fetch(signupApi, {

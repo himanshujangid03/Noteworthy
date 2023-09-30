@@ -1,9 +1,12 @@
-import { useRouteLoaderData } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 import "./EditNote.css";
 import { useContext, useEffect, useState } from "react";
 import EditSingleNote from "./EditSingleNote";
 import Modal from "../../ui/Modal";
 import AuthContext from "../../utils/auth-context";
+import CenterDiv from "../../ui/CenterDiv";
+import Heading from "../../ui/Heading";
+import Button from "../../ui/Button";
 
 function EditNote() {
   const data = useRouteLoaderData("get-notes");
@@ -37,7 +40,12 @@ function EditNote() {
             </ul>
           </>
         ) : (
-          <p>Could not find the notes with this name</p>
+          <CenterDiv>
+            <Heading as="h2">No notes found in your collection.</Heading>
+            <Link to={"/home/new"}>
+              <Button type="createbtn">Create New</Button>
+            </Link>
+          </CenterDiv>
         )}
       </div>
     </>

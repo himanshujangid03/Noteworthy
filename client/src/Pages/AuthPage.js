@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 import "./AuthPage.css";
 import { useContext, useState } from "react";
 import AuthContext from "../utils/auth-context";
 import Logo from "../assets/NoteWorthy-logos_black.png";
 
 function AuthPage() {
+  const data = useRouteLoaderData("loginData");
   const ctx = useContext(AuthContext);
-
-  useState(() => {}, [ctx]);
   return (
     <>
       <div className="AuthPage">
@@ -22,7 +21,7 @@ function AuthPage() {
 
           <p className="p-get-started">Get Started</p>
           <div className="AuthPage__btns">
-            {ctx.user ? (
+            {data && data.name ? (
               <Link to={"/home"}>
                 <button>Go to Dashboard</button>
               </Link>

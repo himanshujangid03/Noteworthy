@@ -4,38 +4,20 @@ import {
   redirect,
   useActionData,
   useNavigation,
+  useRouteLoaderData,
 } from "react-router-dom";
 import "./form.css";
-import { loginApi } from "../../utils/api";
+import { loginApi, usernameApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../utils/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
-import ModalDiv from "../../ui/ModalDiv";
 
 function Login() {
   const navigation = useNavigation();
   const isLogin = navigation.state === "submitting";
-  const [error, setError] = useState(false);
   const data = useActionData();
-
-  const setErrorHandler = () => {
-    if (data) {
-      setError(true);
-      ctx.setRefresh(true);
-    }
-  };
-
-  useEffect(() => {
-    setErrorHandler();
-    setTimeout(() => {
-      setError(false);
-      ctx.setRefresh(true);
-    }, 1000);
-  }, [isLogin]);
-
-  const ctx = useContext(AuthContext);
 
   return (
     <div className="form">
@@ -46,7 +28,16 @@ function Login() {
         <div>
           <Form method="post">
             <h1>Login to your account</h1>
-            {error && <ModalDiv data={data} />}
+            {data && (
+              <p className="error">
+                <FontAwesomeIcon
+                  icon={faTriangleExclamation}
+                  style={{ marginRight: "1rem" }}
+                  size="lg"
+                />
+                {data && data.message}
+              </p>
+            )}
             <input
               name="email"
               type="email"

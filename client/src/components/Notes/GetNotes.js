@@ -47,16 +47,6 @@ function GetNotes() {
           </>
         ) : (
           <CenterDiv>
-            <img
-              style={{
-                width: "20rem",
-                opacity: "0.5",
-                position: "absolute",
-                zIndex: "1",
-              }}
-              src={noDataImage}
-              alt={noDataImage}
-            />
             <Heading as="h2">No notes found in your collection.</Heading>
             <Link to={"/home/new"}>
               <Button type="createbtn">Create New</Button>
@@ -70,7 +60,7 @@ function GetNotes() {
 
 export default GetNotes;
 
-export async function loader({ request, params }) {
+export async function loader({ req, params }) {
   const response = await fetch(getNotesApi, {
     method: "GET",
     credentials: "include",

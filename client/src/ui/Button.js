@@ -27,7 +27,7 @@ const Button = styled.button`
   ${(props) =>
     props.type === "createbtn" &&
     css`
-      background-color: #4477ce;
+      background-color: #337ccf;
       padding: 1rem;
       color: white;
       width: 10rem;
@@ -55,7 +55,7 @@ const Button = styled.button`
   ${(props) =>
     props.type === "editbtn" &&
     css`
-      background-color: #4477ce;
+      background-color: #337ccf;
       color: white;
       &:hover {
         background-color: #2c5191;

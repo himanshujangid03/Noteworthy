@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { json } from "react-router-dom";
 
 const AuthContext = React.createContext({
-  user: Object,
+  user: String,
   refresh: Boolean,
   favourites: Array,
   setFavourites: () => {},
@@ -11,6 +11,7 @@ const AuthContext = React.createContext({
   setQuery: () => {},
   showSidePanel: Boolean,
   setShowSidePanel: () => {},
+  setUser: () => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -18,31 +19,14 @@ export const AuthContextProvider = (props) => {
   const [refresh, setRefresh] = useState(false);
   const [favourites, setFavourites] = useState([]);
   const [showSidePanel, setShowSidePanel] = useState(false);
-  const [user, setUser] = useState(false);
-  const fetchIsLoggedHandler = async () => {
-    const response = await fetch("http://localhost:4000/user/profile", {
-      method: "GET",
-      credentials: "include",
-    });
-    if (!response.ok) {
-      return response;
-    }
+  const [user, setUser] = useState("");
 
-    const resData = await response.json();
-    if (resData) {
-      setUser(resData);
-    } else {
-      setUser(false);
-    }
-  };
-  useEffect(() => {
-    fetchIsLoggedHandler();
-  }, [refresh]);
   return (
     <>
       <AuthContext.Provider
         value={{
           user: user,
+          setUser: setUser,
           refresh: refresh,
           setRefresh: setRefresh,
           favourites: favourites,

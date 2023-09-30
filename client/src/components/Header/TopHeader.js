@@ -1,16 +1,15 @@
 import { useContext, useEffect } from "react";
 import "./TopHeader.css";
 import AuthContext from "../../utils/auth-context";
-import { Link } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 import UserSvg from "../../ui/UserSvg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 function TopHeader() {
   const ctx = useContext(AuthContext);
-  const { name } = ctx.user;
+  const data = useRouteLoaderData("loginData");
 
-  useEffect(() => {}, [name]);
   return (
     <>
       <div className="topheader">
@@ -30,7 +29,7 @@ function TopHeader() {
         </div>
         <div className="user-info">
           <UserSvg />
-          <p>Hello, {name}</p>
+          <p>Hello, {data && data.name}</p>
         </div>
       </div>
     </>
