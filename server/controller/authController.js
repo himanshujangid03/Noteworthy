@@ -93,7 +93,6 @@ exports.logout = catchAsync(async (req, res, next) => {
     expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
   });
-  res.status(201).json({ status: "success" });
 });
 
 exports.getUserName = catchAsync(async (req, res, next) => {
