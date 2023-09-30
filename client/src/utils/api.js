@@ -1,8 +1,9 @@
-exports.loginApi = "http://localhost:4000/user/login";
-exports.logoutApi = "http://localhost:4000/user/logout";
-exports.signupApi = "http://localhost:4000/user/signup";
-exports.getNotesApi = "http://localhost:4000/note/get-note";
-exports.createNotesApi = "http://localhost:4000/note/create-note";
-exports.editNotesApi = "http://localhost:4000/note/update-note/";
-exports.deleteNotesApi = "http://localhost:4000/note/delete-note/";
-exports.usernameApi = "http://localhost:4000/user/profile";
+exports.loginApi = "https://noteworthy-three.vercel.app/user/login";
+exports.logoutApi = "https://noteworthy-three.vercel.app/user/logout";
+exports.signupApi = "https://noteworthy-three.vercel.app/user/signup";
+exports.getNotesApi = "https://noteworthy-three.vercel.app/note/get-note";
+exports.createNotesApi = "https://noteworthy-three.vercel.app/note/create-note";
+exports.editNotesApi = "https://noteworthy-three.vercel.app/note/update-note/";
+exports.deleteNotesApi =
+  "https://noteworthy-three.vercel.app/note/delete-note/";
+exports.usernameApi = "https://noteworthy-three.vercel.app/user/profile";

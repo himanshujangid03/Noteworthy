@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { json } from "react-router-dom";
+import React, { useState } from "react";
 
 const AuthContext = React.createContext({
   user: String,
