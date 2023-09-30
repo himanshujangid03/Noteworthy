@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://vercel.com/himanshujangid03/noteworthy-frontend",
+    origin: "https://noteworthy-silk.vercel.app",
   }),
 );
 
