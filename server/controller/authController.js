@@ -14,17 +14,18 @@ function signToken(id) {
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
-  const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
+  const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
 
   const cookieOptions = {
     expires,
     httpOnly: true,
-    secure: true,
   };
+  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
 
   // Remove password from output
+  user.password = undefined;
 
   res.status(statusCode).json({
     status: "success",
@@ -59,17 +60,9 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  const token = signToken(user._id);
-  const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
-  const cookieOptions = {
-    expires,
-    httpOnly: true,
-    secure: true,
-  };
-  user.password = undefined;
-
-  res.cookie("jwt", token, cookieOptions);
-  next();
+  setTimeout(() => {
+    createSendToken(user, 201, res);
+  }, 500);
 });
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
@@ -100,6 +93,7 @@ exports.logout = catchAsync(async (req, res, next) => {
     expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
   });
+  res.status(201).json({ status: "success" });
 });
 
 exports.getUserName = catchAsync(async (req, res, next) => {
