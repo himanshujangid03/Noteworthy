@@ -25,7 +25,14 @@ const createSendToken = (user, statusCode, res) => {
   res.cookie("jwt", token, cookieOptions);
 
   // Remove password from output
-  user.password = undefined;
+
+  res.status(statusCode).json({
+    status: "success",
+    token,
+    data: {
+      user,
+    },
+  });
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
@@ -52,7 +59,17 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  createSendToken(user, 201, res);
+  const token = signToken(user._id);
+  const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
+  const cookieOptions = {
+    expires,
+    httpOnly: true,
+    secure: true,
+  };
+  user.password = undefined;
+
+  res.cookie("jwt", token, cookieOptions);
+  next();
 });
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
