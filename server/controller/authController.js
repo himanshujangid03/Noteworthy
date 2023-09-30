@@ -14,13 +14,13 @@ function signToken(id) {
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
-  const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
+  const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
 
   const cookieOptions = {
     expires,
     httpOnly: true,
+    secure: true,
   };
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
 
