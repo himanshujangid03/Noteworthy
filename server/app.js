@@ -20,7 +20,7 @@ app.use(
   cors({
     credentials: true,
     //origin: "http://localhost:3000",
-    origin: "https://noteworthy-silk.vercel.app",
+    origin: "https://noteworthy-zeta.vercel.app/",
   }),
 );
 
