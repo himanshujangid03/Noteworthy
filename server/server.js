@@ -9,6 +9,10 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => {});
+  .then(() => {
+    console.log("Database connection successfully!");
+  });
 
-app.listen(4000, () => {});
+app.listen(4000, () => {
+  console.log("server started successfully!");
+});
