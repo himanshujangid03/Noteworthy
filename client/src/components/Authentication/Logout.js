@@ -5,13 +5,11 @@ import Button from "../../ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { logoutApi } from "../../utils/api";
-import { useContext, useState } from "react";
-import AuthContext from "../../utils/auth-context";
 import ModalDiv from "../../ui/ModalDiv";
+import { useState } from "react";
 
 function Logout({ onClose }) {
   const [isLoading, setIsLoading] = useState(false);
-  const ctx = useContext(AuthContext);
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {

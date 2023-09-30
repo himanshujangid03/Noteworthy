@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import "./TopHeader.css";
 import AuthContext from "../../utils/auth-context";
-import { Link, useRouteLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import UserSvg from "../../ui/UserSvg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
