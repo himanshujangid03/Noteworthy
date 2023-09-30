@@ -6,7 +6,6 @@ import Logo from "../assets/NoteWorthy-logos_black.png";
 
 function AuthPage() {
   const ctx = useContext(AuthContext);
-  console.log(ctx.user);
 
   return (
     <>

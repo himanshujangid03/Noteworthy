@@ -14,9 +14,10 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://noteworthy-three.vercel.app",
+    origin: "http://localhost:3000",
   }),
 );
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -26,6 +27,7 @@ app.use(
   }),
 );
 app.use("/", (req, res, next) => {
+  res.send("Hello from the server");
   next();
 });
 

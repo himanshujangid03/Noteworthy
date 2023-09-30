@@ -1,10 +1,6 @@
-import { useRouteLoaderData } from "react-router-dom";
 import "./Welcome.css";
 
 function Welcome() {
-  const data = useRouteLoaderData("loginData");
-  console.log(data);
-
   /* const ctx = useContext(AuthContext);
   const name = data.name; */
   return (

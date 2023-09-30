@@ -1,8 +1,8 @@
 import { Link, useRouteLoaderData } from "react-router-dom";
 import "./EditNote.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import EditSingleNote from "./EditSingleNote";
-
+import Modal from "../../ui/Modal";
 import AuthContext from "../../utils/auth-context";
 import CenterDiv from "../../ui/CenterDiv";
 import Heading from "../../ui/Heading";
@@ -12,10 +12,15 @@ import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 
 function EditNote() {
   const data = useRouteLoaderData("get-notes");
+  const [notesData, setNotesData] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const ctx = useContext(AuthContext);
 
-  const sortedNotes = data.sort((a, b) => {
+  useEffect(() => {
+    setNotesData(data);
+  }, [data]);
+
+  const sortedNotes = notesData.sort((a, b) => {
     const timestampA = new Date(a.createdAt);
     const timestampB = new Date(b.createdAt);
     return timestampB - timestampA;
