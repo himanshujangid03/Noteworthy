@@ -25,9 +25,8 @@ const createSendToken = (user, statusCode, req, res) => {
 
   // Remove password from output
   user.password = undefined;
-
-  console.log("cookie sent!");
   req.user = user;
+  console.log("cookie sent!");
   res.status(statusCode).json({
     status: "success",
     token,
@@ -61,7 +60,7 @@ exports.login = async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  createSendToken(user, 201, res);
+  createSendToken(user, 201, req, res);
   next();
 };
 
