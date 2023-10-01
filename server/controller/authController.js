@@ -94,9 +94,9 @@ exports.logout = catchAsync(async (req, res, next) => {
   res.status(201).json({ status: "success" });
 });
 
-exports.getUserName = catchAsync(async (req, res, next) => {
+exports.getUserName = async (req, res, next) => {
   const { name } = await req.user;
 
   res.status(201).json({ name: name });
   next();
-});
+};
