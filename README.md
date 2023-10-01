@@ -1,4 +1,4 @@
-# React Pizza - MERN Stack Project
+# Noteworthy - MERN Stack Project
 
 Noteworthy is a full-stack MERN (MongoDB, Express.js, React, Node.js) application designed to make note-taking a breeze. With powerful CRUD (Create, Read, Update, Delete) operations, it empowers users to manage their notes seamlessly.
 
