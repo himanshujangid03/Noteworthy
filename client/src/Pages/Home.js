@@ -40,8 +40,8 @@ export async function userLoader({ request, params }) {
   if (!response.ok) {
     return response;
   }
+  console.log(response);
   const resData = await response.json();
-  console.log(resData);
 
   return resData;
 }
