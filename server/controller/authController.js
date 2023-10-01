@@ -36,7 +36,7 @@ const createSendToken = (user, statusCode, req, res) => {
   });
 };
 
-exports.signup = catchAsync(async (req, res, next) => {
+exports.signup = async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -45,9 +45,9 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   createSendToken(newUser, 201, req, res);
   next();
-});
+};
 
-exports.login = catchAsync(async (req, res, next) => {
+exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -61,7 +61,8 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   createSendToken(user, 201, req, res);
-});
+  next();
+};
 
 exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
@@ -86,16 +87,16 @@ exports.isLoggedIn = async (req, res, next) => {
   next();
 };
 
-exports.logout = catchAsync(async (req, res, next) => {
+exports.logout = async (req, res, next) => {
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
   });
   res.status(201).json({ status: "success" });
-});
+};
 
 exports.getUserName = async (req, res, next) => {
-  const { name } = await req.user;
+  const { name } = req.user;
 
   res.status(201).json({ name: name });
   next();
