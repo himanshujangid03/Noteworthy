@@ -67,24 +67,20 @@ exports.login = async (req, res, next) => {
 
 exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
-    try {
-      // 1) verify token
-      const decoded = await promisify(jwt.verify)(
-        req.cookies.jwt,
-        process.env.JWT_SECRET,
-      );
+    // 1) verify token
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+    );
 
-      // 2) Check if user still exists
-      const currentUser = await User.findById(decoded.id);
-      if (!currentUser) {
-        return next();
-      }
-      req.user = currentUser;
-      console.log(currentUser);
+    // 2) Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
       return next();
-    } catch (err) {
-      return next(err);
     }
+    req.user = currentUser;
+    console.log(currentUser);
+    return next();
   }
   next();
 };
