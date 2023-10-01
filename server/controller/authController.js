@@ -28,11 +28,12 @@ const createSendToken = (user, statusCode, req, res) => {
   user.password = undefined;
 
   console.log("cookie sent!");
+  console.log(user);
   res.status(statusCode).json({
     status: "success",
     token,
     data: {
-      user,
+      user: user.name,
     },
   });
 };
@@ -61,7 +62,7 @@ exports.login = async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  createSendToken(user, 201, req, res);
+  createSendToken(user, 201, res);
   next();
 };
 
