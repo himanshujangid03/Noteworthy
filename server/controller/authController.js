@@ -27,7 +27,6 @@ const createSendToken = (user, statusCode, res) => {
   user.password = undefined;
 
   console.log("cookie sent!");
-  console.log(user);
   res.status(statusCode).json({
     status: "success",
     token,
