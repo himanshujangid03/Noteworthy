@@ -44,7 +44,7 @@ exports.signup = async (req, res, next) => {
     password: req.body.password,
   });
 
-  createSendToken(newUser, 201, req, res);
+  createSendToken(newUser, 201, res);
   next();
 };
 
@@ -82,6 +82,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
       // THERE IS A LOGGED IN USER
       req.user = currentUser;
+      res.json({ name: req.user.name });
       console.log(currentUser);
       return next();
     } catch (err) {
