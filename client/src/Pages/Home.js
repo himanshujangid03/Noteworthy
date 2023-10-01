@@ -35,6 +35,7 @@ export async function userLoader({ request, params }) {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
   });
   if (!response.ok) {
     return response;
