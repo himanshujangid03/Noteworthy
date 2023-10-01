@@ -28,7 +28,6 @@ const createSendToken = (user, statusCode, res) => {
   // Remove password from output
   user.password = undefined;
 
-  console.log("cookie sent");
   res.status(statusCode).json({
     status: "success",
     token,

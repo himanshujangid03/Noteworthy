@@ -24,12 +24,13 @@ const ModalDiv = styled.div`
 
   @media only screen and (max-width: 600px) {
     background-color: white;
-    padding: 2rem;
+    padding: 1.8rem;
     margin: 1rem;
+    font-size: 1rem;
     border-radius: 1.5rem;
-    width: 20rem;
-    max-width: 95%;
-    height: 10rem;
+    width: 15rem;
+    max-width: 90%;
+    height: 12rem;
     display: grid;
   }
 `;

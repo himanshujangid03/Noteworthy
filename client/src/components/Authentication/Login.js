@@ -39,7 +39,7 @@ function Login() {
                   style={{ marginRight: "1rem" }}
                   size="lg"
                 />
-                {data && data.message}
+                {data && "Invalid email and password!"}
               </p>
             )}
             <input
@@ -48,6 +48,7 @@ function Login() {
               type="email"
               placeholder="Enter your email address"
               defaultValue={"demo@gmail.com"}
+              required
             />
             <div className="input-pass">
               <input
@@ -56,6 +57,7 @@ function Login() {
                 type={`${showPass ? "text" : "password"}`}
                 placeholder="Enter your password"
                 defaultValue={"password123"}
+                required
               />
               <span onClick={() => setShowPass((el) => !el)}>
                 {showPass ? (
@@ -96,7 +98,6 @@ export async function action({ request, params }) {
     body: JSON.stringify(userData),
     credentials: "include",
   });
-  console.log(response);
 
   if (!response.ok) {
     return response;

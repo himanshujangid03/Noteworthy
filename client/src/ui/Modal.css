@@ -34,3 +34,9 @@
     opacity: 1;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .modal-content {
+    left: 50%;
+  }
+}

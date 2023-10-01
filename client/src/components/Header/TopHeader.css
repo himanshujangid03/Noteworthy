@@ -73,7 +73,8 @@
     font-size: 0.8rem;
   }
   .topheader input:focus {
-    width: 10rem;
+    width: 12rem;
+    padding: 1.2rem;
     border: none;
     transform: translateY(-2px);
   }
