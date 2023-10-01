@@ -7,7 +7,7 @@ import { usernameApi } from "../utils/api";
 
 function Home() {
   const data = useRouteLoaderData("loginData");
-  //const { name } = data;
+  const { name } = data;
 
   //const ctx = useContext(AuthContext);
   return (
