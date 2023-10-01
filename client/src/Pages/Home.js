@@ -2,7 +2,7 @@ import { Outlet, useRouteLoaderData } from "react-router-dom";
 import SidePanel from "../components/Notes/SidePanel";
 import "./Home.css";
 import TopHeader from "../components/Header/TopHeader";
-import NotAuthModal from "../components/Authentication/NotAuthModal";
+//import NotAuthModal from "../components/Authentication/NotAuthModal";
 import { usernameApi } from "../utils/api";
 
 function Home() {
