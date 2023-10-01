@@ -60,7 +60,14 @@ exports.login = async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  createSendToken(user, 201, res);
+  const token = signToken(user._id);
+  const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
+  const cookieOptions = {
+    expires,
+    httpOnly: true,
+    secure: true,
+  };
+  res.cookie("jwt", token, cookieOptions);
   next();
 };
 
