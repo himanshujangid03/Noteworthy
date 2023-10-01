@@ -11,7 +11,6 @@ function Home() {
   //const ctx = useContext(AuthContext);
   return (
     <>
-      {data && !data.name && <NotAuthModal />}
       <div className="home">
         <SidePanel />
         <div className="home__right">
@@ -34,7 +33,6 @@ export async function userLoader({ request, params }) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      accept: "/",
     },
     credentials: "include",
   });
