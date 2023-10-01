@@ -5,8 +5,7 @@ const router = express.Router();
 
 router
   .route("/profile")
-  .use(authController.isLoggedIn)
-  .get(authController.getUserName);
+  .get(authController.isLoggedIn(authController.getUserName));
 
 router.route("/login").post(authController.login);
 router.route("/signup").post(authController.signup);
