@@ -13,7 +13,9 @@ function signToken(id) {
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
-  const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
+  const expires = new Date(
+    Date.now() + process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000,
+  );
 
   const cookieOptions = {
     expires,
