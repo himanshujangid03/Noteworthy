@@ -63,30 +63,28 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 201, req, res);
 });
 
-exports.isLoggedIn = catchAsync(async (req, res, next) => {
-  if (!req.cookies.jwt) {
-    console.log("req.cookies.jwt error");
-    return next(
-      new AppError("You are not logged In! Please login to get access"),
-    );
-  }
+exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
-    const decoded = await promisify(jwt.verify)(
-      req.cookies.jwt,
-      process.env.JWT_SECRET,
-    );
+    try {
+      // 1) verify token
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET,
+      );
 
-    const currentUser = await User.findById(decoded.id);
-
-    if (!currentUser) {
-      return next(new AppError("User does not exist!"));
+      // 2) Check if user still exists
+      const currentUser = await User.findById(decoded.id);
+      if (!currentUser) {
+        return next();
+      }
+      req.user = currentUser;
+      return next();
+    } catch (err) {
+      return next();
     }
-    req.user = currentUser;
-    return next();
   }
-  console.log("user is logged in");
   next();
-});
+};
 
 exports.logout = catchAsync(async (req, res, next) => {
   res.cookie("jwt", "loggedout", {
