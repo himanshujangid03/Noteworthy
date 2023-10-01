@@ -10,7 +10,7 @@ function signToken(id) {
   });
 }
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
   const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
@@ -27,6 +27,7 @@ const createSendToken = (user, statusCode, res) => {
   user.password = undefined;
 
   console.log("cookie sent!");
+  req.user = user;
   res.status(statusCode).json({
     status: "success",
     token,
@@ -43,7 +44,7 @@ exports.signup = async (req, res, next) => {
     password: req.body.password,
   });
 
-  createSendToken(newUser, 201, res);
+  createSendToken(newUser, 201, req, res);
   next();
 };
 
@@ -60,14 +61,7 @@ exports.login = async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  const token = signToken(user._id);
-  const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
-  const cookieOptions = {
-    expires,
-    httpOnly: true,
-    secure: true,
-  };
-  res.cookie("jwt", token, cookieOptions);
+  createSendToken(user, 201, res);
   next();
 };
 
