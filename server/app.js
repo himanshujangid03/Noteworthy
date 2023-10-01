@@ -21,9 +21,9 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     //origin: "http://localhost:3000",
     origin: "https://noteworthy-zeta.vercel.app",
-    methods: ["GET", "POST", "PATCH", "DELETE"],
   }),
 );
 

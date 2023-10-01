@@ -40,11 +40,13 @@ function Login() {
               name="email"
               type="email"
               placeholder="Enter your email address"
+              defaultValue={"demo@gmail.com"}
             />
             <input
               name="password"
               type="password"
               placeholder="Enter your password"
+              defaultValue={"password123"}
             />
             <button className={`${isLogin ? "loading" : ""}`}>
               {isLogin ? <Loader /> : "Submit"}

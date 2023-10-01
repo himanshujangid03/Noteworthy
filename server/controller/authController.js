@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const User = require("../model/userModel");
-const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 
 // eslint-disable-next-line
@@ -99,8 +98,6 @@ exports.logout = async (req, res, next) => {
 };
 
 exports.getUserName = async (req, res, next) => {
-  const { name } = req.user;
-
-  res.status(201).json({ name: name });
+  res.status(201).json({ name: req.user.name });
   next();
 };
