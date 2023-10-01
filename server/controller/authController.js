@@ -11,7 +11,7 @@ function signToken(id) {
   });
 }
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
   const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
@@ -19,8 +19,8 @@ const createSendToken = (user, statusCode, res) => {
   const cookieOptions = {
     expires,
     httpOnly: true,
+    secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   };
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
 
@@ -43,7 +43,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
   });
 
-  createSendToken(newUser, 201, res);
+  createSendToken(newUser, 201, req, res);
   next();
 });
 
@@ -60,11 +60,12 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  createSendToken(user, 201, res);
+  createSendToken(user, 201, req, res);
 });
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
   if (!req.cookies.jwt) {
+    console.log("req.cookies.jwt error");
     return next(
       new AppError("You are not logged In! Please login to get access"),
     );
