@@ -58,27 +58,24 @@ exports.login = async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  createSendToken(user, 201, req, res);
+  createSendToken(user, 201, res);
   next();
 };
 
 exports.isLoggedIn = async (req, res, next) => {
-  if (!req.cookies.jwt) {
-    return next(
-      new AppError("You are not logged In! Please login to get access"),
-    );
-  }
   if (req.cookies.jwt) {
+    // 1) verify token
     const decoded = await promisify(jwt.verify)(
       req.cookies.jwt,
       process.env.JWT_SECRET,
     );
 
+    // 2) Check if user still exists
     const currentUser = await User.findById(decoded.id);
-
     if (!currentUser) {
-      return next(new AppError("User does not exist!"));
+      return next();
     }
+    // THERE IS A LOGGED IN USER
     req.user = currentUser;
     return next();
   }
