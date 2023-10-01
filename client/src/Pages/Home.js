@@ -32,9 +32,11 @@ export async function userLoader({ request, params }) {
   const response = await fetch(usernameApi, {
     method: "GET",
     headers: {
+      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
     credentials: "include",
+    withCredentials: true,
   });
   if (!response.ok) {
     return response;
