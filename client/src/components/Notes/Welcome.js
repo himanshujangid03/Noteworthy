@@ -1,3 +1,4 @@
+import Heading from "../../ui/Heading";
 import "./Welcome.css";
 
 function Welcome() {

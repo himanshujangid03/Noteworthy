@@ -35,7 +35,7 @@
   font-size: 1.2rem;
   font-family: "Montserrat";
   font-weight: 500;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .topheader input:focus {
@@ -70,13 +70,10 @@
 
   .topheader input {
     width: 10rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .topheader input:focus {
-    width: 12rem;
-    padding: 1.2rem;
-    border: none;
-    transform: translateY(-2px);
+    width: 15rem;
   }
 
   .offcanvas-btn {

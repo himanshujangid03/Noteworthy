@@ -20,7 +20,7 @@ function NewNote(props) {
             type="text"
             rows={"13"}
             name="content"
-            placeholder="Content"
+            placeholder="Write the content of the note here..."
             required
           />
           <Button type="createbtn">{isLoading ? <Loader /> : "Submit"}</Button>
