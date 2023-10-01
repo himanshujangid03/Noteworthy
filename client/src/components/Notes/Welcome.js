@@ -7,7 +7,7 @@ function Welcome() {
     <>
       <div className="welcome">
         <div>
-          <h3>Welcome</h3>
+          <h3>Welcome to Noteworthy Notes - Your Digital Notebook</h3>
           <p>
             Get organized, stay productive, and never forget a thing with our
             Notes App. Whether you're jotting down ideas, making to-do lists, or

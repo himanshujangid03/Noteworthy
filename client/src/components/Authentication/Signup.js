@@ -2,8 +2,12 @@ import { Form, Link, redirect, useNavigation } from "react-router-dom";
 import "./form.css";
 import { signupApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Signup() {
+  const [showPass, setShowPass] = useState(false);
   const navigation = useNavigation();
   const isLogin = navigation.state === "submitting";
   return (
@@ -16,6 +20,7 @@ function Signup() {
           <h1>Create a new account</h1>
           <input
             name="name"
+            id="name"
             type="text"
             placeholder="Enter your email address"
             required
@@ -23,15 +28,25 @@ function Signup() {
           <input
             name="email"
             type="email"
+            id="email"
             placeholder="Enter your email address"
             required
           />
-          <input
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            required
-          />
+          <div className="input-pass">
+            <input
+              name="password"
+              id="password"
+              type={`${showPass ? "text" : "password"}`}
+              placeholder="Enter your password"
+            />
+            <span onClick={() => setShowPass((el) => !el)}>
+              {showPass ? (
+                <FontAwesomeIcon icon={faEye} size="lg" />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} size="lg" />
+              )}
+            </span>
+          </div>
           <button className={`${isLogin ? "loading" : ""}`}>
             {isLogin ? <Loader /> : "Create my Account"}
           </button>

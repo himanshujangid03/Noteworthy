@@ -10,9 +10,15 @@ import { loginApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faEyeSlash,
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 function Login() {
+  const [showPass, setShowPass] = useState(false);
   const navigation = useNavigation();
   const isLogin = navigation.state === "submitting";
   const data = useActionData();
@@ -38,16 +44,27 @@ function Login() {
             )}
             <input
               name="email"
+              id="email"
               type="email"
               placeholder="Enter your email address"
               defaultValue={"demo@gmail.com"}
             />
-            <input
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              defaultValue={"password123"}
-            />
+            <div className="input-pass">
+              <input
+                name="password"
+                id="password"
+                type={`${showPass ? "text" : "password"}`}
+                placeholder="Enter your password"
+                defaultValue={"password123"}
+              />
+              <span onClick={() => setShowPass((el) => !el)}>
+                {showPass ? (
+                  <FontAwesomeIcon icon={faEye} size="lg" />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} size="lg" />
+                )}
+              </span>
+            </div>
             <button className={`${isLogin ? "loading" : ""}`}>
               {isLogin ? <Loader /> : "Submit"}
             </button>
