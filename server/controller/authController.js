@@ -19,7 +19,7 @@ const createSendToken = (user, statusCode, req, res) => {
   const cookieOptions = {
     expires,
     httpOnly: true,
-    secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+    secure: true,
   };
 
   res.cookie("jwt", token, cookieOptions);
@@ -27,6 +27,7 @@ const createSendToken = (user, statusCode, req, res) => {
   // Remove password from output
   user.password = undefined;
 
+  console.log("cookie sent!");
   res.status(statusCode).json({
     status: "success",
     token,
@@ -79,9 +80,10 @@ exports.isLoggedIn = async (req, res, next) => {
         return next();
       }
       req.user = currentUser;
+      console.log(currentUser);
       return next();
     } catch (err) {
-      return next();
+      return next(err);
     }
   }
   next();
