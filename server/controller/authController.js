@@ -19,6 +19,7 @@ const createSendToken = (user, statusCode, req, res) => {
     expires,
     httpOnly: true,
     secure: true,
+    sameSite: "strict",
   };
 
   res.cookie("jwt", token, cookieOptions);
@@ -74,12 +75,11 @@ exports.isLoggedIn = async (req, res, next) => {
 
     // 2) Check if user still exists
     const currentUser = await User.findById(decoded.id);
-    if (!currentUser) {
+    /* if (!currentUser) {
       return next();
-    }
+    } */
     req.user = currentUser;
     console.log(currentUser);
-    return next();
   }
   next();
 };
