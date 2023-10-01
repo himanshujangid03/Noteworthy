@@ -20,6 +20,7 @@ app.use(
   cors({
     credentials: true,
     //origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     origin: "https://noteworthy-zeta.vercel.app",
   }),
 );

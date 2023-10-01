@@ -7,11 +7,11 @@ import { usernameApi } from "../utils/api";
 
 function Home() {
   const data = useRouteLoaderData("loginData");
-  //data && !data.name && <NotAuthModal />
 
   //const ctx = useContext(AuthContext);
   return (
     <>
+      {data && !data.name && <NotAuthModal />}
       <div className="home">
         <SidePanel />
         <div className="home__right">

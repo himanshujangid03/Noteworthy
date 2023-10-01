@@ -83,6 +83,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
     req.user = currentUser;
     return next();
   }
+  console.log("user is logged in");
   next();
 });
 
