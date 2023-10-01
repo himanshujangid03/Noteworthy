@@ -8,6 +8,8 @@ const cookieParser = require("cookie-parser");
 //const passport = require("passport");
 //const passportLocalMongoose = require("passport-local-mongoose");
 //const GoogleStrategy = require("passport-google-oauth20").Strategy;
+// eslint-disable-next-line node/no-unpublished-require
+const bodyParser = require("body-parser");
 const noteRouter = require("./router/notesRouter");
 const userRouter = require("./router/userRouter");
 const globalErrorHandler = require("./controller/errorController");
@@ -20,10 +22,18 @@ app.use(
   cors({
     credentials: true,
     //origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PATCH", "DELETE"],
     origin: "https://noteworthy-zeta.vercel.app",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
   }),
 );
+
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
 /* app.use(
   session({
