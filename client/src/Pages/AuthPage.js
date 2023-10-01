@@ -15,9 +15,7 @@ function AuthPage() {
           <h1>
             Welcome to <strong>Noteworthy</strong>
           </h1>
-          <p className="p-tagline">
-            Discover a World of Note-Taking Convenience
-          </p>
+          <p className="p-tagline">your notes your way - accessible to all</p>
 
           <p className="p-get-started">Get Started</p>
           <div className="AuthPage__btns">

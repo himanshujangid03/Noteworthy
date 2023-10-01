@@ -30,13 +30,15 @@
   margin: 1rem auto;
   padding: 0.6rem;
   border-radius: 0.6rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
   width: fit-content;
 }
 
 .AuthPage .AuthPage__info .p-get-started {
   font-size: 1.5rem;
-  letter-spacing: 0.5rem;
+
+  letter-spacing: 0.2rem;
   font-weight: 600;
 }
 
