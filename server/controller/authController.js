@@ -66,24 +66,20 @@ exports.login = async (req, res, next) => {
 
 exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
-    try {
-      // 1) verify token
-      const decoded = await promisify(jwt.verify)(
-        req.cookies.jwt,
-        process.env.JWT_SECRET,
-      );
+    // 1) verify token
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+    );
 
-      // 2) Check if user still exists
-      const currentUser = await User.findById(decoded.id);
-      if (!currentUser) {
-        return next();
-      }
-      req.user = currentUser;
-      console.log(currentUser);
-      return next();
-    } catch (err) {
+    // 2) Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
       return next();
     }
+    req.user = currentUser;
+    console.log(currentUser);
+    return next();
   }
   next();
 };
@@ -92,11 +88,13 @@ exports.logout = async (req, res, next) => {
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
+    secure: true,
   });
   res.status(201).json({ status: "success" });
 };
 
 exports.getUserName = async (req, res, next) => {
+  console.log(req.user);
   res.status(201).json({ name: req.user.name });
   next();
 };
