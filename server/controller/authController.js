@@ -82,7 +82,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
       // THERE IS A LOGGED IN USER
       req.user = currentUser;
-      res.json({ name: req.user.name });
+      res.json({ user: currentUser });
       console.log(req.user.name);
       console.log(currentUser.name);
       return next();
