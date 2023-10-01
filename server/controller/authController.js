@@ -28,12 +28,11 @@ const createSendToken = (user, statusCode, req, res) => {
   user.password = undefined;
 
   console.log("cookie sent!");
-  console.log(user);
   res.status(statusCode).json({
     status: "success",
     token,
     data: {
-      user: user.name,
+      user,
     },
   });
 };
