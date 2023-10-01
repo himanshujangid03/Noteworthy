@@ -4,7 +4,6 @@ import {
   redirect,
   useActionData,
   useNavigation,
-  
 } from "react-router-dom";
 import "./form.css";
 import { loginApi } from "../../utils/api";
@@ -78,6 +77,7 @@ export async function action({ request, params }) {
     body: JSON.stringify(userData),
     credentials: "include",
   });
+  console.log(response);
 
   if (!response.ok) {
     return response;

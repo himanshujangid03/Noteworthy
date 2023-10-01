@@ -41,6 +41,7 @@ export async function userLoader({ request, params }) {
     return response;
   }
   const resData = await response.json();
+  console.log(resData);
 
   return resData;
 }

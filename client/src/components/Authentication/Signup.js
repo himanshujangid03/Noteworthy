@@ -3,7 +3,6 @@ import "./form.css";
 import { signupApi } from "../../utils/api";
 import Loader from "../../ui/Loader";
 
-
 function Signup() {
   const navigation = useNavigation();
   const isLogin = navigation.state === "submitting";
@@ -62,6 +61,7 @@ export async function action({ request, params }) {
     },
     body: JSON.stringify(userData),
   });
+  console.log(response);
 
   if (!response.ok) {
     return response;
