@@ -34,6 +34,7 @@ export async function userLoader({ request, params }) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      accept: "/",
     },
     credentials: "include",
   });
