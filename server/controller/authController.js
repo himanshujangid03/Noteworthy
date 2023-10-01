@@ -78,10 +78,8 @@ exports.isLoggedIn = async (req, res, next) => {
     /* if (!currentUser) {
       return next();
     } */
-    const { name } = currentUser;
-    req.user = name;
-    res.json({ name: name });
-    console.log(name);
+    req.user = currentUser;
+    console.log(currentUser);
   }
   next();
 };
@@ -97,6 +95,8 @@ exports.logout = async (req, res, next) => {
 
 exports.getUserName = async (req, res, next) => {
   console.log(req.user);
-  res.status(201).json({ name: req.user });
+  const { name } = req.user;
+
+  res.status(201).json({ name: name });
   next();
 };
