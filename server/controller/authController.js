@@ -95,6 +95,6 @@ exports.logout = async (req, res, next) => {
 
 exports.getUserName = async (req, res, next) => {
   console.log(req.user);
-  res.status(201).json({ name: req.user.name });
+  res.status(201).json({ name: req.user });
   next();
 };
