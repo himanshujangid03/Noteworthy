@@ -20,6 +20,7 @@ const createSendToken = (user, statusCode, req, res) => {
     expires,
     httpOnly: true,
     secure: true,
+    sameSite: "strict",
   };
 
   res.cookie("jwt", token, cookieOptions);
