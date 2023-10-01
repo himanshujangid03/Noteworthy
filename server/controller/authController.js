@@ -10,23 +10,21 @@ function signToken(id) {
   });
 }
 
-const createSendToken = (user, statusCode, req, res) => {
+const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
-  const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
+  const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
 
   const cookieOptions = {
     expires,
     httpOnly: true,
     secure: true,
   };
-
   res.cookie("jwt", token, cookieOptions);
 
   // Remove password from output
   user.password = undefined;
-  req.user = user;
-  console.log("cookie sent!");
+
   res.status(statusCode).json({
     status: "success",
     token,
@@ -43,7 +41,7 @@ exports.signup = async (req, res, next) => {
     password: req.body.password,
   });
 
-  createSendToken(newUser, 201, req, res);
+  createSendToken(newUser, 201, res);
   next();
 };
 
@@ -65,22 +63,23 @@ exports.login = async (req, res, next) => {
 };
 
 exports.isLoggedIn = async (req, res, next) => {
+  if (!req.cookies.jwt) {
+    return next(
+      new AppError("You are not logged In! Please login to get access"),
+    );
+  }
   if (req.cookies.jwt) {
-    // 1) verify token
     const decoded = await promisify(jwt.verify)(
       req.cookies.jwt,
       process.env.JWT_SECRET,
     );
 
-    // 2) Check if user still exists
     const currentUser = await User.findById(decoded.id);
-    if (!currentUser) {
-      return next();
-    }
 
-    // THERE IS A LOGGED IN USER
+    if (!currentUser) {
+      return next(new AppError("User does not exist!"));
+    }
     req.user = currentUser;
-    console.log(currentUser);
     return next();
   }
   next();
