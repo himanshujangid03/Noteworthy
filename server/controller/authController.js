@@ -78,8 +78,9 @@ exports.isLoggedIn = async (req, res, next) => {
     /* if (!currentUser) {
       return next();
     } */
-    req.user = currentUser;
-    console.log(currentUser);
+    const { name } = currentUser;
+    req.user = name;
+    console.log(name);
   }
   next();
 };
