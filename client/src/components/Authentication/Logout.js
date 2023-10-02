@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../ui/Loader";
 import "./Logout.css";
 import Button from "../../ui/Button";

@@ -62,9 +62,8 @@ function SidePanel() {
           </div>
           <div className="side-panel__navlinks">
             <motion.ul
-              layout
-              animate={{ opacity: 1, translateX: 0 }}
-              initial={{ opacity: 0, translateY: -10 }}
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
               transition={{ delay: 0.2 }}
               style={{ listStyle: "none", padding: 0 }}
             >

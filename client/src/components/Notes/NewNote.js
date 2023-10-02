@@ -12,7 +12,7 @@ function NewNote(props) {
   return (
     <>
       <div className="new-note">
-        <Heading as={"h2"} style={{ fontSize: "4rem" }} type="create">
+        <Heading as={"h2"} type="create">
           Create new note
         </Heading>
         <Br />
