@@ -18,7 +18,9 @@ exports.createNote = catchAsync(async (req, res, next) => {
     return next();
   }
 
-  res.status(201).json({ status: "success" });
+  setTimeout(() => {
+    res.status(201).json({ status: "success" });
+  }, 1000);
 });
 
 exports.getNote = catchAsync(async (req, res, next) => {

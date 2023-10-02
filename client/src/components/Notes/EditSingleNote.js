@@ -12,6 +12,7 @@ import DeleteModal from "./DeleteModal";
 import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
 import IconOnlyButton from "../../ui/IconBtn";
+import { AnimatePresence, motion } from "framer-motion";
 
 const iconStyle = {
   margin: "0rem 1rem 0 0",
@@ -45,61 +46,75 @@ function Note({ item }) {
         <DeleteModal item={item} closeModal={setToggleDeleteModal} />
       )}
 
-      <div className="edit-note">
-        <div className="edit-note__div1">
-          <li className="edit-note__title">
-            <FontAwesomeIcon
-              icon={faNoteSticky}
-              size="xl"
-              style={{ color: "#ffc800", margin: "0 1rem 0rem 0" }}
-            />{" "}
-            {item.title}
-          </li>
-          <li className="edit-note__date">{formatDate}</li>
-          <li>
-            <Link to={`${item._id}`}>
-              <Button
-                onClick={editNoteHandler}
-                type="editbtn"
-                responsive="isMobile"
-              >
+      <motion.div
+        layout
+        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: 0 }}
+        exit={{ opacity: 0, scale: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <AnimatePresence>
+          <div className="edit-note">
+            <div className="edit-note__div1">
+              <li className="edit-note__title">
                 <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  style={iconStyle}
-                  size="sm"
-                />
-                Edit
-              </Button>
-            </Link>
+                  icon={faNoteSticky}
+                  size="xl"
+                  style={{ color: "#ffc800", margin: "0 1rem 0rem 0" }}
+                />{" "}
+                {item.title}
+              </li>
+              <li className="edit-note__date">{formatDate}</li>
+              <li>
+                <Link to={`${item._id}`}>
+                  <Button
+                    onClick={editNoteHandler}
+                    type="editbtn"
+                    responsive="isMobile"
+                  >
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      style={iconStyle}
+                      size="sm"
+                    />
+                    Edit
+                  </Button>
+                </Link>
 
-            <Button
-              onClick={deleteNoteHandler}
-              type="deletebtn"
-              responsive="isMobile"
-            >
-              <FontAwesomeIcon icon={faTrashCan} style={iconStyle} size="sm" />
-              Delete
-            </Button>
+                <Button
+                  onClick={deleteNoteHandler}
+                  type="deletebtn"
+                  responsive="isMobile"
+                >
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    style={iconStyle}
+                    size="sm"
+                  />
+                  Delete
+                </Button>
 
-            <Link to={`${item._id}`}>
-              <IconOnlyButton
-                onClick={editNoteHandler}
-                type="editbtn"
-                responsive="isMobile"
-              >
-                <FontAwesomeIcon icon={faPenToSquare} size="sm" />
-              </IconOnlyButton>
-            </Link>
-            <IconOnlyButton
-              onClick={deleteNoteHandler}
-              type="deletebtn"
-              responsive="isMobile"
-            >
-              <FontAwesomeIcon icon={faTrashCan} size="sm" />
-            </IconOnlyButton>
-          </li>
-        </div>
-      </div>
+                <Link to={`${item._id}`}>
+                  <IconOnlyButton
+                    onClick={editNoteHandler}
+                    type="editbtn"
+                    responsive="isMobile"
+                  >
+                    <FontAwesomeIcon icon={faPenToSquare} size="sm" />
+                  </IconOnlyButton>
+                </Link>
+                <IconOnlyButton
+                  onClick={deleteNoteHandler}
+                  type="deletebtn"
+                  responsive="isMobile"
+                >
+                  <FontAwesomeIcon icon={faTrashCan} size="sm" />
+                </IconOnlyButton>
+              </li>
+            </div>
+          </div>
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 }

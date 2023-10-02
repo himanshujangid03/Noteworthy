@@ -108,6 +108,11 @@
   );
 }
 
+.side-panel__navlinks a:after {
+  content: "";
+  transition-delay: 0.2s;
+}
+
 .side-panel__navlinks a.active {
   color: white;
   background: rgb(55, 48, 163);

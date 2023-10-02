@@ -2,7 +2,7 @@ import { Outlet, useRouteLoaderData } from "react-router-dom";
 import SidePanel from "../components/Notes/SidePanel";
 import "./Home.css";
 import TopHeader from "../components/Header/TopHeader";
-//import NotAuthModal from "../components/Authentication/NotAuthModal";
+import NotAuthModal from "../components/Authentication/NotAuthModal";
 import { usernameApi } from "../utils/api";
 
 function Home() {
@@ -11,17 +11,23 @@ function Home() {
   //const ctx = useContext(AuthContext);
   return (
     <>
-      <div className="home">
-        <SidePanel />
-        <div className="home__right">
-          <div>
-            <TopHeader />
+      {data && data.name ? (
+        <>
+          <div className="home">
+            <SidePanel />
+            <div className="home__right">
+              <div>
+                <TopHeader />
+              </div>
+              <div className="note-content">
+                <Outlet />
+              </div>
+            </div>
           </div>
-          <div className="note-content">
-            <Outlet />
-          </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <NotAuthModal />
+      )}
     </>
   );
 }

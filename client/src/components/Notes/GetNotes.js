@@ -1,6 +1,6 @@
 import { Link, useRouteLoaderData } from "react-router-dom";
 import { getNotesApi } from "../../utils/api";
-import {  useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Note from "./Note";
 import "./GetNote.css";
 import AuthContext from "../../utils/auth-context";
@@ -9,8 +9,10 @@ import Heading from "../../ui/Heading";
 import Button from "../../ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import { AnimatePresence, motion } from "framer-motion";
 
 function GetNotes() {
+  const [selectedId, setSelectedId] = useState(null);
   const data = useRouteLoaderData("get-notes");
   const [notesData, setNotesData] = useState([]);
   const [refresh, setRefresh] = useState(false);
@@ -62,11 +64,20 @@ function GetNotes() {
                 </Button>
               </Link>
             </div>
-            <ul className="notes">
-              {filteredNotes.map((item) => (
-                <Note key={item._id} item={item} />
-              ))}
-            </ul>
+            <motion.div
+              layout
+              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0 }}
+              exit={{ opacity: 0, scale: 0 }}
+            >
+              <ul className="notes">
+                {filteredNotes.map((item) => (
+                  <AnimatePresence>
+                    <Note key={item._id} item={item} />
+                  </AnimatePresence>
+                ))}
+              </ul>
+            </motion.div>
           </>
         ) : (
           <CenterDiv>

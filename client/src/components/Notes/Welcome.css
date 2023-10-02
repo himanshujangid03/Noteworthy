@@ -7,12 +7,14 @@
 
 .welcome {
   margin: 1rem auto;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 2rem;
   background-color: white;
   box-shadow: rgb(0, 0, 0) 0px 5px 10px;
   width: 70rem;
   background-image: url("../../assets/home_img.jpeg");
+  background-repeat: no-repeat;
+
   background-position: bottom;
   color: rgb(255, 255, 255);
   text-align: center;
@@ -39,6 +41,10 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .welcome__div {
+    margin-top: 1rem;
+  }
+
   .welcome {
     width: fit-content;
     background-position: bottom;

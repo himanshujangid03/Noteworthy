@@ -1,7 +1,7 @@
 .notes {
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   padding: 1rem;
   background-color: #c3d6ff3a;
   border-radius: 1.5rem;
@@ -17,6 +17,17 @@
   background-color: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
   gap: 0.5rem;
+  transition: background-color scale 0.3s;
+}
+
+.note.view-note {
+  position: absolute;
+  width: 30rem;
+  height: 15rem;
+  top: 50%;
+  left: 50%;
+
+  -webkit-transition: all 0.2s;
 }
 
 .note .note__div1 {
@@ -46,7 +57,7 @@
 }
 
 .note__content {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin: 0 0 1rem 0;
   height: 8rem;
   overflow-y: scroll;
@@ -59,7 +70,7 @@
 
 /* ------------------ MEDIA QUERY --------------------------*/
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   .notes {
     grid-template-columns: 1fr;
     padding: 0.5rem;

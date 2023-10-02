@@ -2,6 +2,7 @@ import { Link, useRouteLoaderData } from "react-router-dom";
 import "./EditNote.css";
 import { useContext, useEffect, useState } from "react";
 import EditSingleNote from "./EditSingleNote";
+// eslint-disable-next-line
 import Modal from "../../ui/Modal";
 import AuthContext from "../../utils/auth-context";
 import CenterDiv from "../../ui/CenterDiv";
