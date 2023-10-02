@@ -33,9 +33,9 @@ function SidePanel() {
       {toggleModal && <Logout onClose={setToggleModal} />}
       <motion.div
         layout
-        animate={{ opacity: 1, scale: 1 }}
-        initial={{ opacity: 0, scale: 0 }}
-        exit={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 0.3, delay: 0.2 }}
       >
         <div className={`side-panel ${ctx.showSidePanel ? "offcanvas" : ""}`}>
           <button
@@ -50,7 +50,6 @@ function SidePanel() {
               <motion.button
                 className="create-note-btn"
                 animate={{ opacity: 1 }}
-                whileHover={{ scale: 1.1, boxShadow: "-moz-initial" }}
               >
                 <FontAwesomeIcon
                   icon={faPlus}
@@ -62,66 +61,83 @@ function SidePanel() {
             <div className="hl"></div>
           </div>
           <div className="side-panel__navlinks">
-            <NavLink
-              className={NavLinkClass}
-              to={"/home/"}
-              onClick={() => ctx.setShowSidePanel(false)}
+            <motion.ul
+              layout
+              animate={{ opacity: 1, translateX: 0 }}
+              initial={{ opacity: 0, translateY: -10 }}
+              transition={{ delay: 0.2 }}
+              style={{ listStyle: "none", padding: 0 }}
             >
-              <p>
-                <FontAwesomeIcon
-                  icon={faHouse}
-                  style={{ marginRight: "1rem" }}
-                />
-                Dashboard
-              </p>
-            </NavLink>
-            <NavLink
-              className={NavLinkClass}
-              to={"/home/note/get-notes"}
-              onClick={() => ctx.setShowSidePanel(false)}
-            >
-              <p>
-                <FontAwesomeIcon
-                  icon={faNoteSticky}
-                  style={{ marginRight: "1rem" }}
-                />
-                All Notes
-              </p>
-            </NavLink>
-
-            <NavLink
-              className={NavLinkClass}
-              to={"/home/note/edit"}
-              onClick={() => ctx.setShowSidePanel(false)}
-            >
-              <p>
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  style={{ marginRight: "1rem" }}
-                />
-                Edit Notes
-              </p>
-            </NavLink>
-            <NavLink
-              className={NavLinkClass}
-              to={"/home/note/fav"}
-              onClick={() => ctx.setShowSidePanel(false)}
-            >
-              <p>
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  style={{ marginRight: "1rem" }}
-                />
-                Favourites
-              </p>
-            </NavLink>
-            <p className="log-out-btn" onClick={logoutbtnHandler}>
-              <FontAwesomeIcon
-                icon={faRightFromBracket}
-                style={{ marginRight: "1rem" }}
-              />
-              Logout
-            </p>
+              <motion.li>
+                <NavLink
+                  className={NavLinkClass}
+                  to={"/home/"}
+                  onClick={() => ctx.setShowSidePanel(false)}
+                >
+                  <p>
+                    <FontAwesomeIcon
+                      icon={faHouse}
+                      style={{ marginRight: "1rem" }}
+                    />
+                    Dashboard
+                  </p>
+                </NavLink>
+              </motion.li>
+              <motion.li>
+                <NavLink
+                  className={NavLinkClass}
+                  to={"/home/note/get-notes"}
+                  onClick={() => ctx.setShowSidePanel(false)}
+                >
+                  <p>
+                    <FontAwesomeIcon
+                      icon={faNoteSticky}
+                      style={{ marginRight: "1rem" }}
+                    />
+                    All Notes
+                  </p>
+                </NavLink>
+              </motion.li>
+              <motion.li>
+                <NavLink
+                  className={NavLinkClass}
+                  to={"/home/note/edit"}
+                  onClick={() => ctx.setShowSidePanel(false)}
+                >
+                  <p>
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      style={{ marginRight: "1rem" }}
+                    />
+                    Edit Notes
+                  </p>
+                </NavLink>
+              </motion.li>
+              <motion.li>
+                <NavLink
+                  className={NavLinkClass}
+                  to={"/home/note/fav"}
+                  onClick={() => ctx.setShowSidePanel(false)}
+                >
+                  <p>
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      style={{ marginRight: "1rem" }}
+                    />
+                    Favourites
+                  </p>
+                </NavLink>
+              </motion.li>
+              <motion.li>
+                <p className="log-out-btn" onClick={logoutbtnHandler}>
+                  <FontAwesomeIcon
+                    icon={faRightFromBracket}
+                    style={{ marginRight: "1rem" }}
+                  />
+                  Logout
+                </p>
+              </motion.li>
+            </motion.ul>
           </div>
         </div>
       </motion.div>

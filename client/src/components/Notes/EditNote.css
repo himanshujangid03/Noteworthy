@@ -43,13 +43,14 @@
 }
 
 .edit-note__date {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 /* -----------  EDIT TOGGLE MODAL -----------------------*/
 
 .editModal {
   width: 30rem;
   max-width: 90%;
+  margin: 0rem;
 }
 
 .editModal__closebtn {

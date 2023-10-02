@@ -3,7 +3,7 @@ import { faBookmark, faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 import "./Note.css";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../utils/auth-context";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Note({ item, removeFavourites }) {
   const ctx = useContext(AuthContext);
@@ -44,33 +44,35 @@ function Note({ item, removeFavourites }) {
     <motion.div
       layout
       animate={{ opacity: 1, scale: 1 }}
-      initial={{ opacity: 0, scale: 0 }}
+      initial={{ opacity: 0, scale: 0.8 }}
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="note">
-        <div className="note__div1">
-          <li className="note__title">
-            <FontAwesomeIcon
-              icon={faNoteSticky}
-              size="xl"
-              style={{ color: "#ffc800", margin: "0 1rem 0rem 0" }}
-            />{" "}
-            {item.title}
-          </li>
+      <AnimatePresence>
+        <div className="note">
+          <div className="note__div1">
+            <li className="note__title">
+              <FontAwesomeIcon
+                icon={faNoteSticky}
+                size="xl"
+                style={{ color: "#ffc800", margin: "0 1rem 0rem 0" }}
+              />{" "}
+              {item.title}
+            </li>
 
-          <span onClick={() => addToFavouritesHandler(item)}>
-            <FontAwesomeIcon
-              icon={faBookmark}
-              size="lg"
-              color={color}
-              beat={color}
-            />
-          </span>
+            <span onClick={() => addToFavouritesHandler(item)}>
+              <FontAwesomeIcon
+                icon={faBookmark}
+                size="lg"
+                color={color}
+                beat={color}
+              />
+            </span>
+          </div>
+          <li className="note__content">{item.content}</li>
+          <li className="note__date">{formatDate}</li>
         </div>
-        <li className="note__content">{item.content}</li>
-        <li className="note__date">{formatDate}</li>
-      </div>
+      </AnimatePresence>
     </motion.div>
   );
 }

@@ -67,14 +67,11 @@ function GetNotes() {
             <motion.div
               layout
               animate={{ opacity: 1, scale: 1 }}
-              initial={{ opacity: 0, scale: 0 }}
               exit={{ opacity: 0, scale: 0 }}
             >
               <ul className="notes">
                 {filteredNotes.map((item) => (
-                  <AnimatePresence>
-                    <Note key={item._id} item={item} />
-                  </AnimatePresence>
+                  <Note key={item._id} item={item} />
                 ))}
               </ul>
             </motion.div>

@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
 import "./AuthPage.css";
 import Logo from "../assets/NoteWorthy-logos_black.png";
+import { motion } from "framer-motion";
 
 function AuthPage() {
   return (
     <>
       <div className="AuthPage">
-        <div className="AuthPage__info">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.3,
+            ease: [0, 0.71, 0.2, 1.01],
+          }}
+          className="AuthPage__info"
+        >
           <img src={Logo} alt={Logo} />
           <h1>
             Welcome to <strong>Noteworthy</strong>
@@ -24,7 +34,7 @@ function AuthPage() {
               </Link>
             </>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

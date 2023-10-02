@@ -6,6 +6,7 @@ import CenterDiv from "../../ui/CenterDiv";
 import Heading from "../../ui/Heading";
 import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
+import { motion } from "framer-motion";
 
 function Favourites() {
   const ctx = useContext(AuthContext);
@@ -29,14 +30,16 @@ function Favourites() {
             </ul>
           </>
         ) : (
-          <CenterDiv>
-            <Heading style={{ color: "white" }} as="h2">
-              No notes found in your collection.
-            </Heading>
-            <Link to={"/home/note"}>
-              <Button type="createbtn">Add New</Button>
-            </Link>
-          </CenterDiv>
+          <motion.div>
+            <CenterDiv>
+              <Heading style={{ color: "white" }} as="h2">
+                No notes found in your collection.
+              </Heading>
+              <Link to={"/home/note"}>
+                <Button type="createbtn">Add New</Button>
+              </Link>
+            </CenterDiv>
+          </motion.div>
         )}
       </div>
     </>

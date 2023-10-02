@@ -9,13 +9,8 @@
   margin: 1rem auto;
   padding: 2rem;
   border-radius: 2rem;
-  background-color: white;
-  box-shadow: rgb(0, 0, 0) 0px 5px 10px;
   width: 70rem;
   background-image: url("../../assets/home_img.jpeg");
-  background-repeat: no-repeat;
-
-  background-position: bottom;
   color: rgb(255, 255, 255);
   text-align: center;
 }

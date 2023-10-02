@@ -5,8 +5,29 @@ const Heading = styled.p`
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   margin: 0.5rem;
-  font-weight: 600;
+  font-weight: 800;
+  background: rgb(56, 189, 248);
+  background: linear-gradient(
+    29deg,
+    rgba(56, 189, 248, 1) 22%,
+    rgba(224, 242, 254, 1) 80%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 
+  ${(props) =>
+    props.type === "create" &&
+    css`
+      font-size: 6rem;
+      background: rgb(23, 37, 84);
+      background: linear-gradient(
+        29deg,
+        rgba(23, 37, 84, 1) 23%,
+        rgba(2, 132, 199, 1) 79%
+      );
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    `}
   ${(props) =>
     props.as === "h1" &&
     css`

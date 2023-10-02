@@ -49,9 +49,9 @@ function Note({ item }) {
       <motion.div
         layout
         animate={{ opacity: 1, scale: 1 }}
-        initial={{ opacity: 0, scale: 0 }}
+        initial={{ opacity: 0, scale: 0.8 }}
         exit={{ opacity: 0, scale: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.2 }}
       >
         <AnimatePresence>
           <div className="edit-note">

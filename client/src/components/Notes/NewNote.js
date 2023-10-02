@@ -12,7 +12,9 @@ function NewNote(props) {
   return (
     <>
       <div className="new-note">
-        <Heading as={"h2"}>Create new note</Heading>
+        <Heading as={"h2"} style={{ fontSize: "4rem" }} type="create">
+          Create new note
+        </Heading>
         <Br />
         <Form method="post">
           <input type="text" name="title" placeholder="Title" required />
@@ -23,7 +25,15 @@ function NewNote(props) {
             placeholder="Write the content of the note here..."
             required
           />
-          <Button type="createbtn">{isLoading ? <Loader /> : "Submit"}</Button>
+          <Button
+            style={{
+              cursor: `${isLoading ? "not-allowed" : ""}`,
+              padding: `${isLoading ? "5px" : ""}`,
+            }}
+            type="createbtn"
+          >
+            {isLoading ? <Loader /> : "Submit"}
+          </Button>
         </Form>
       </div>
     </>

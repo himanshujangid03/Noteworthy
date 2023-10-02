@@ -7,6 +7,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { logoutApi } from "../../utils/api";
 import ModalDiv from "../../ui/ModalDiv";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Logout({ onClose }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,30 +39,39 @@ function Logout({ onClose }) {
       <div className="modal">
         <div className="overlay" onClick={() => onClose(false)}></div>
         <div className="modal-content">
-          <ModalDiv type="grid2">
-            <div>
-              <Link to={""}>
-                <button
-                  className="editModal__closebtn"
-                  onClick={() => onClose(false)}
-                >
-                  <FontAwesomeIcon icon={faX} />
-                </button>
-              </Link>
-              <h3>Are you sure you want to log out?</h3>
-              <p>This will permanently remove the selected item.</p>
-            </div>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button type="cancelbtn" onClick={() => onClose(false)}>
-                Cancel
-              </Button>
-              <form method="post" onSubmit={submitHandler}>
-                <Button type="authbtn">
-                  {isLoading ? <Loader /> : "Log Out"}
-                </Button>
-              </form>
-            </div>
-          </ModalDiv>
+          <motion.div
+            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0 }}
+            exit={{ opacity: 0, scale: 0 }}
+          >
+            <AnimatePresence>
+              <ModalDiv type="grid2">
+                <div>
+                  <button
+                    className="editModal__closebtn"
+                    onClick={() => onClose(false)}
+                  >
+                    <FontAwesomeIcon icon={faX} />
+                  </button>
+                  <h3>Are you sure you want to log out?</h3>
+                  <p>This will permanently remove the selected item.</p>
+                </div>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <Button type="cancelbtn" onClick={() => onClose(false)}>
+                    Cancel
+                  </Button>
+                  <form method="post" onSubmit={submitHandler}>
+                    <Button
+                      style={{ cursor: `${isLoading ? "not-allowed" : ""}` }}
+                      type="authbtn"
+                    >
+                      {isLoading ? <Loader /> : "Log Out"}
+                    </Button>
+                  </form>
+                </div>
+              </ModalDiv>
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </>

@@ -74,7 +74,12 @@ function EditNoteModal({ closeModal, item }) {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
-              <Button type="editbtn">{isLoading ? <Loader /> : "Save"}</Button>
+              <Button
+                style={{ margin: "1rem", padding: "0.8rem" }}
+                type="editbtn"
+              >
+                {isLoading ? <Loader /> : "Save"}
+              </Button>
             </form>
           </div>
         </div>
