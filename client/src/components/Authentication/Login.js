@@ -47,7 +47,7 @@ function Login() {
               id="email"
               type="email"
               placeholder="Enter your email address"
-              defaultValue={"demo@gmail.com"}
+              
               required
             />
             <div className="input-pass">
@@ -56,7 +56,7 @@ function Login() {
                 id="password"
                 type={`${showPass ? "text" : "password"}`}
                 placeholder="Enter your password"
-                defaultValue={"password123"}
+                
                 required
               />
               <span onClick={() => setShowPass((el) => !el)}>
