@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../ui/Button";
+import { motion } from "framer-motion";
 
 function EditNoteModal({ closeModal, item }) {
   const [title, setTitle] = useState(item.title);
@@ -49,7 +50,11 @@ function EditNoteModal({ closeModal, item }) {
           <div className="overlay" onClick={() => closeModal(false)}></div>
         </Link>
         <div className="modal-content">
-          <div className="new-note editModal">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className=" editModal"
+          >
             <Link to={""}>
               <button
                 className="editModal__closebtn"
@@ -59,6 +64,7 @@ function EditNoteModal({ closeModal, item }) {
               </button>
             </Link>
             <form method="patch" onSubmit={submitHandler}>
+              <label>Title :</label>
               <input
                 type="text"
                 name="title"
@@ -66,6 +72,7 @@ function EditNoteModal({ closeModal, item }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
+              <label>Content :</label>
               <textarea
                 type="text"
                 rows={"13"}
@@ -75,13 +82,13 @@ function EditNoteModal({ closeModal, item }) {
                 onChange={(e) => setContent(e.target.value)}
               />
               <Button
-                style={{ margin: "1rem", padding: "0.8rem" }}
+                style={{ marginTop: "1rem", padding: "0.8rem", width: "10rem" }}
                 type="editbtn"
               >
                 {isLoading ? <Loader /> : "Save"}
               </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

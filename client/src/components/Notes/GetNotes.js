@@ -69,11 +69,14 @@ function GetNotes() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
             >
-              <ul className="notes">
+              <motion.ul
+                initial={{ transition: { staggerChildren: 0.05 } }}
+                className="notes"
+              >
                 {filteredNotes.map((item) => (
                   <Note key={item._id} item={item} />
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
           </>
         ) : (

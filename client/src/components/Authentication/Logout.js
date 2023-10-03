@@ -40,9 +40,10 @@ function Logout({ onClose }) {
         <div className="overlay" onClick={() => onClose(false)}></div>
         <div className="modal-content">
           <motion.div
-            animate={{ opacity: 1, scale: 1 }}
-            initial={{ opacity: 0, scale: 0 }}
-            exit={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.1 }}
           >
             <AnimatePresence>
               <ModalDiv type="grid2">

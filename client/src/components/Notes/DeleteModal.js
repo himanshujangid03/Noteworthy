@@ -44,9 +44,9 @@ function EditNoteModal({ closeModal, item }) {
         </Link>
         <div className="modal-content">
           <motion.div
-            animate={{ opacity: 1, scale: 1 }}
-            initial={{ opacity: 0, scale: 0 }}
-            exit={{ opacity: 0, scale: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
           >
             <AnimatePresence>
               <ModalDiv type="grid3">

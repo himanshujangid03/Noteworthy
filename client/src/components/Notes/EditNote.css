@@ -48,9 +48,57 @@
 /* -----------  EDIT TOGGLE MODAL -----------------------*/
 
 .editModal {
-  width: 30rem;
+  width: 60rem;
   max-width: 90%;
   margin: 0rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.editModal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.editModal form label {
+  color: black;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.editModal form input {
+  max-width: 95%;
+  border: none;
+  background-color: rgb(241, 241, 241);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  margin: 0.8rem 0 0.8rem 0;
+  font-family: "Montserrat", sans-serif;
+  outline: none;
+}
+
+.editModal form input:focus {
+  border: 2px solid blue;
+}
+
+.editModal form textarea {
+  max-width: 95%;
+  border: none;
+  background-color: rgb(241, 241, 241);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  margin: 0.8rem 0 0.8rem 0;
+  font-family: "Montserrat", sans-serif;
+  outline: none;
+}
+
+.editModal form textarea:focus {
+  border: 2px solid blue;
 }
 
 .editModal__closebtn {
@@ -58,7 +106,7 @@
   border: none;
   background: transparent;
   border-radius: 0.5rem;
-  margin-left: 0.5rem;
+  margin-bottom: 1rem;
   padding: 0.6rem;
   cursor: pointer;
 }

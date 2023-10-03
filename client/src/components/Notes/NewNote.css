@@ -20,14 +20,14 @@
   background-color: rgb(255, 255, 255);
   border-radius: 0.6rem;
   outline: none;
-  transition: all 0.2s;
+  transition: all 0.3s;
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
 }
 
 .new-note Form input:focus {
-  border: 2px solid rgb(129, 129, 129);
+  border: 2px solid blue;
 }
 
 .new-note Form textarea {
@@ -43,7 +43,7 @@
 }
 
 .new-note Form textarea:focus {
-  border: 2px solid rgb(129, 129, 129);
+  border: 2px solid blue;
 }
 /* -------------------- MEDIA QUERY ----------------------------*/
 

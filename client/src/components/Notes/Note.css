@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 1rem;
-  background-color: #c3d6ff3a;
+  background-color: #ffffff3a;
   border-radius: 1.5rem;
   flex-wrap: wrap;
 }
