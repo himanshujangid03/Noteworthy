@@ -47,7 +47,7 @@ export async function userLoader({ request, params }) {
   if (!response.ok) {
     return response;
   }
-  console.log(response);
+  
   if (!response.ok) {
     return response;
   }
