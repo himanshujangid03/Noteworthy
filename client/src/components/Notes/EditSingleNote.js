@@ -48,10 +48,10 @@ function Note({ item }) {
 
       <motion.div
         layout
-        animate={{ opacity: 1, scale: 1 }}
-        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 10 }}
         exit={{ opacity: 0, scale: 0 }}
-        transition={{ duration: 0.2 }}
+        transition={{ type: "tween", staggerChildren: 0.03 }}
       >
         <AnimatePresence>
           <div className="edit-note">
@@ -61,7 +61,7 @@ function Note({ item }) {
                   icon={faNoteSticky}
                   size="xl"
                   style={{ color: "#ffc800", margin: "0 1rem 0rem 0" }}
-                />{" "}
+                />
                 {item.title}
               </li>
               <li className="edit-note__date">{formatDate}</li>

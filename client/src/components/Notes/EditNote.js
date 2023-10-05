@@ -10,6 +10,7 @@ import Heading from "../../ui/Heading";
 import Button from "../../ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 function EditNote() {
   const data = useRouteLoaderData("get-notes");
@@ -60,9 +61,17 @@ function EditNote() {
                 Edit the Notes
               </Heading>
               <Link to={""}>
-                <Button type="refreshbtn" onClick={refreshBtnHandler}>
-                  <FontAwesomeIcon icon={faArrowsRotate} spin={refresh} />
-                </Button>
+                <motion.div
+                  initial={{ scale: 1 }}
+                  whileHover={{
+                    transition: { type: "spring", stiffness: 500 },
+                    scale: 1.1,
+                  }}
+                >
+                  <Button type="refreshbtn" onClick={refreshBtnHandler}>
+                    <FontAwesomeIcon icon={faArrowsRotate} spin={refresh} />
+                  </Button>
+                </motion.div>
               </Link>
             </div>
             <ul className="edit-notes">

@@ -9,11 +9,10 @@
 }
 
 .edit-note {
-  margin: 0.2rem;
+  margin: 0.1rem;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   background-color: #ffffff;
-  border-bottom: 1px solid #d1d1d1b6;
 }
 
 .edit-note .edit-note__div1 {
