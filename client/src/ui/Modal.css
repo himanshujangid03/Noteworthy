@@ -11,7 +11,7 @@
 }
 
 .overlay {
-  background-color: rgba(110, 110, 110, 0.356);
+  background-color: var(--modal-overlay-color);
   backdrop-filter: blur(3px);
 }
 
@@ -21,7 +21,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1rem;
-  background-color: transparent;
+  background-color: none;
   animation: appear 0.3s;
   max-width: 90%;
 }

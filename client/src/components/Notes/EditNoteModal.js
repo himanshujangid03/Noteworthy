@@ -2,17 +2,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { editNotesApi } from "../../utils/api";
 import "./NewNote.css";
 import Loader from "../../ui/Loader";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../ui/Button";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import AuthContext from "../../utils/auth-context";
 
 function EditNoteModal({ closeModal, item }) {
   const [title, setTitle] = useState(item.title);
   const [content, setContent] = useState(item.content);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const ctx = useContext(AuthContext);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -39,6 +41,12 @@ function EditNoteModal({ closeModal, item }) {
         navigate("/home/note/edit");
         closeModal(false);
         setIsLoading(false);
+        setTimeout(() => {
+          ctx.setMessageModal(true);
+        }, 1000);
+        setTimeout(() => {
+          ctx.setMessageModal(false);
+        }, 3000);
       }
     }, 1000);
   };
@@ -50,45 +58,54 @@ function EditNoteModal({ closeModal, item }) {
           <div className="overlay" onClick={() => closeModal(false)}></div>
         </Link>
         <div className="modal-content">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className=" editModal"
-          >
-            <Link to={""}>
-              <button
-                className="editModal__closebtn"
-                onClick={() => closeModal(false)}
-              >
-                <FontAwesomeIcon icon={faX} />
-              </button>
-            </Link>
-            <form method="patch" onSubmit={submitHandler}>
-              <label>Title :</label>
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <label>Content :</label>
-              <textarea
-                type="text"
-                rows={"13"}
-                name="content"
-                placeholder="Content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
-              <Button
-                style={{ marginTop: "1rem", padding: "0.8rem", width: "10rem" }}
-                type="editbtn"
-              >
-                {isLoading ? <Loader /> : "Save"}
-              </Button>
-            </form>
-          </motion.div>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              className=" editModal"
+            >
+              <Link to={""}>
+                <button
+                  className="editModal__closebtn"
+                  onClick={() => closeModal(false)}
+                >
+                  <FontAwesomeIcon icon={faX} />
+                </button>
+              </Link>
+              <form method="patch" onSubmit={submitHandler}>
+                <label>Title :</label>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
+                <label>Content :</label>
+                <textarea
+                  type="text"
+                  rows={"13"}
+                  name="content"
+                  placeholder="Content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  required
+                />
+                <Button
+                  style={{
+                    marginTop: "1rem",
+                    padding: "0.8rem",
+                    width: "10rem",
+                  }}
+                  type="editbtn"
+                >
+                  {isLoading ? <Loader /> : "Save"}
+                </Button>
+              </form>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </>

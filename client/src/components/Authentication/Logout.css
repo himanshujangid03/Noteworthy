@@ -11,3 +11,8 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.logout_modal form Button.loading {
+  width: 10rem;
+  background: rgb(61, 61, 61);
+}

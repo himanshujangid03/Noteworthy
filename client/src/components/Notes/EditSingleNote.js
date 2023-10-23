@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
 import IconOnlyButton from "../../ui/IconBtn";
 import { AnimatePresence, motion } from "framer-motion";
-
 const iconStyle = {
   margin: "0rem 1rem 0 0",
 };

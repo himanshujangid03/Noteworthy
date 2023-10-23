@@ -11,6 +11,10 @@ const AuthContext = React.createContext({
   showSidePanel: Boolean,
   setShowSidePanel: () => {},
   setUser: () => {},
+  mode: Boolean,
+  setMode: () => {},
+  messageModal: Boolean,
+  setMessageModal: () => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -19,6 +23,8 @@ export const AuthContextProvider = (props) => {
   const [favourites, setFavourites] = useState([]);
   const [showSidePanel, setShowSidePanel] = useState(false);
   const [user, setUser] = useState("");
+  const [mode, setMode] = useState(false);
+  const [messageModal, setMessageModal] = useState(false);
 
   return (
     <>
@@ -34,6 +40,10 @@ export const AuthContextProvider = (props) => {
           setQuery: setQuery,
           showSidePanel: showSidePanel,
           setShowSidePanel: setShowSidePanel,
+          mode: mode,
+          setMode: setMode,
+          messageModal: messageModal,
+          setMessageModal: setMessageModal,
         }}
       >
         {props.children}

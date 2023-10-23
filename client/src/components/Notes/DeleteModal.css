@@ -1,5 +1,5 @@
 .delete-note {
-  background-color: white;
+  background: var(--modal-bg-color);
   padding: 2rem;
   margin: 1rem;
   border-radius: 1.5rem;

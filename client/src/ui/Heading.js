@@ -22,8 +22,8 @@ const Heading = styled.p`
       background: rgb(23, 37, 84);
       background: linear-gradient(
         29deg,
-        rgba(23, 37, 84, 1) 23%,
-        rgba(2, 132, 199, 1) 79%
+        var(--create-h2-gradient1) 23%,
+        var(--create-h2-gradient2) 79%
       );
       -webkit-text-fill-color: transparent;
       -webkit-background-clip: text;

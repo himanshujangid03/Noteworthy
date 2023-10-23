@@ -3,9 +3,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 1rem;
-  background-color: #ffffff3a;
+  background-color: var(--notes-bg-color);
   border-radius: 1.5rem;
   flex-wrap: wrap;
+  color: var(--font-color);
 }
 
 .note {
@@ -14,7 +15,8 @@
   margin: 0.6rem;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: var(--note-bg-color);
+  border: 1px solid var(--border-color);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
   gap: 0.5rem;
   transition: background-color scale 0.3s;
@@ -39,15 +41,15 @@
   padding: 0.4rem 0.7rem 0.4rem 0.7rem;
   border-radius: 10rem;
   transition: all 0.3s;
-  color: black;
+  color: var(--font-color);
   cursor: pointer;
 }
 .note .note__div1 span:hover {
-  color: #3866ff;
+  color: var(--font-color);
 }
 
 .note .note__div1 span.favourite {
-  color: #3866ff;
+  color: var(--font-color);
 }
 
 .note__title {

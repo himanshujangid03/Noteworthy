@@ -39,13 +39,13 @@ function Logout({ onClose }) {
       <div className="modal">
         <div className="overlay" onClick={() => onClose(false)}></div>
         <div className="modal-content">
-          <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 30 }}
-            exit={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.1 }}
-          >
-            <AnimatePresence>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              className="logout_modal"
+            >
               <ModalDiv type="grid2">
                 <div>
                   <button
@@ -57,22 +57,29 @@ function Logout({ onClose }) {
                   <h3>Are you sure you want to log out?</h3>
                   <p>This will permanently remove the selected item.</p>
                 </div>
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "baseline",
+                  }}
+                >
                   <Button type="cancelbtn" onClick={() => onClose(false)}>
                     Cancel
                   </Button>
                   <form method="post" onSubmit={submitHandler}>
                     <Button
+                      className={`${isLoading ? "loading" : ""}`}
                       style={{ cursor: `${isLoading ? "not-allowed" : ""}` }}
                       type="authbtn"
                     >
-                      {isLoading ? <Loader /> : "Log Out"}
+                      {isLoading ? "processing..." : "Log Out"}
                     </Button>
                   </form>
                 </div>
               </ModalDiv>
-            </AnimatePresence>
-          </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </>

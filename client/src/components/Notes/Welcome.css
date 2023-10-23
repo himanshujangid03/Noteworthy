@@ -10,8 +10,10 @@
   padding: 2rem;
   border-radius: 2rem;
   width: 70rem;
+  background-color: var(--welcome-bg-image);
   background-image: url("../../assets/home_img.jpeg");
-  color: rgb(255, 255, 255);
+  background-blend-mode: overlay;
+  color: rgb(241, 241, 241);
   text-align: center;
 }
 /* 
@@ -43,7 +45,7 @@
   .welcome {
     width: fit-content;
     background-position: bottom;
-    color: white;
+    color: var(--font-color);
   }
 
   .welcome h3 {
@@ -56,6 +58,6 @@
     font-size: 1.5rem;
     margin-top: 1.5rem;
     font-weight: 500;
-    color: white;
+    color: var(--font-color);
   }
 }

@@ -5,6 +5,7 @@ import { useRouteLoaderData } from "react-router-dom";
 import UserSvg from "../../ui/UserSvg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import Theme from "../../ui/Theme";
 
 function TopHeader() {
   const ctx = useContext(AuthContext);
@@ -34,6 +35,7 @@ function TopHeader() {
           </button>
         </div>
         <div className="user-info">
+          <Theme />
           <UserSvg />
           <p>Hello, {data && data.name}</p>
         </div>

@@ -60,14 +60,17 @@ function Note({ item, removeFavourites }) {
               {item.title}
             </li>
 
-            <span onClick={() => addToFavouritesHandler(item)}>
-              <FontAwesomeIcon
-                icon={faBookmark}
-                size="lg"
-                color={color}
-                beat={color}
-              />
-            </span>
+            <motion.div
+              initial={{ scale: 1 }}
+              whileHover={{
+                transition: { type: "spring", stiffness: 500 },
+                scale: 1.1,
+              }}
+              style={{ cursor: "pointer" }}
+              onClick={() => addToFavouritesHandler(item)}
+            >
+              <FontAwesomeIcon icon={faBookmark} size="lg" color={color} />
+            </motion.div>
           </div>
           <li className="note__content">{item.content}</li>
           <li className="note__date">{formatDate}</li>

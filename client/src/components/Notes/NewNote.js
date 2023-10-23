@@ -12,7 +12,7 @@ function NewNote(props) {
   return (
     <>
       <div className="new-note">
-        <Heading as={"h2"} type="create">
+        <Heading as={"h2"} type={"create"}>
           Create new note
         </Heading>
         <Br />
@@ -28,7 +28,6 @@ function NewNote(props) {
           <Button
             style={{
               cursor: `${isLoading ? "not-allowed" : ""}`,
-              padding: `${isLoading ? "5px" : ""}`,
             }}
             type="createbtn"
           >

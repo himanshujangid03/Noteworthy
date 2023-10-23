@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 const Button = styled.button`
   margin: 0rem 0.5rem 0 0.5rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.6rem 1rem 0.6rem 1rem;
   outline: none;
   font-size: 1.2rem;
   width: 5rem;
@@ -34,8 +34,11 @@ const Button = styled.button`
     props.type === "createbtn" &&
     css`
       background-color: #337ccf;
-      padding: 1rem;
+      padding: 0.8rem;
+      display: flex;
+      justify-content: center;
       color: white;
+      font-size: 1.2rem;
       width: 10rem;
       margin: 1rem 0 1rem 0;
 
@@ -57,12 +60,20 @@ const Button = styled.button`
       background-color: white;
       border: 1px solid #c0c0c0;
       width: 6rem;
+
       padding: 0 1rem 0 1rem;
       font-weight: 500;
 
       &:hover {
         background-color: grey;
         color: #000;
+      }
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+        height: 2rem;
+        width: 5rem;
+        padding: 0.6rem;
       }
     `};
 
@@ -82,8 +93,15 @@ const Button = styled.button`
     css`
       background-color: #000;
       padding: 0.8rem;
-      width: 8rem;
+      width: 10rem;
       color: white;
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+        width: 6rem;
+        padding: 0.6rem;
+        margin-top: 1rem;
+      }
     `};
 
   ${(props) =>
@@ -113,6 +131,21 @@ const Button = styled.button`
       &:hover {
         background-color: #f87171;
         color: #7f1d1d;
+      }
+    `};
+  ${(props) =>
+    props.type === "themeBtn" &&
+    css`
+      background-color: #fecaca;
+      color: var(--theme-color);
+      background-color: var(--theme-btn-bg-color);
+      padding: 0.3rem 0rem 0.1rem 0rem;
+      width: 3rem;
+      margin-right: 5rem;
+      border: 1px solid var(--border-color);
+
+      &:hover {
+        background-color: var(--theme-btn-bg-hover);
       }
     `};
 

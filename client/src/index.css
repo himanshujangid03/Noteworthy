@@ -9,10 +9,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  transition: background-color 0.3s;
 }
 
 html {
-  font-size: 85%;
+  font-size: 80%;
 }
 
 code {
@@ -22,4 +23,58 @@ code {
 
 * {
   margin: 0;
+}
+:root {
+  &,
+  &.light-mode {
+    --home-bg-color: #f0f9ff;
+    --font-color: black;
+    --note-content-color: #071952;
+    --border-color: transparent;
+    --box-shadow: rgba(65, 65, 65, 0.473) 0px 6px 15px;
+    --input-bg-color: #c3d6ff;
+    --sidepanel-font-color: #000;
+    --notes-bg-color: #ffffff3a;
+    --note-bg-color: white;
+    --modal-overlay-color: rgba(110, 110, 110, 0.356);
+    --modal-bg-color: white;
+    --sidepanel-a-hover: rgba(147, 197, 253, 1);
+    --sidepanel-a-active: rgba(55, 48, 163, 1);
+    --sidepanel-icon-active: white;
+    --theme-btn-bg-color: #0d205e;
+    --theme-btn-bg-hover: #0a3958;
+    --theme-color: white;
+    --welcome-bg-image: rgba(0, 0, 0, 0);
+    --form-input-color: rgb(241, 241, 241);
+    --gradient-one: rgba(55, 48, 163, 1);
+    --gradient-second: rgba(37, 99, 235, 1);
+    --create-h2-gradient1: rgba(23, 37, 84, 1);
+    --create-h2-gradient2: rgba(2, 132, 199, 1);
+  }
+
+  &.dark-mode {
+    --home-bg-color: #0b2447;
+    --font-color: #d4d4d8;
+    --note-content-color: #091f3d;
+    --border-color: #394a63;
+    --box-shadow: none;
+    --input-bg-color: #0a3958;
+    --sidepanel-font-color: #9ca3af;
+    --notes-bg-color: #0b2447;
+    --note-bg-color: rgb(8 47 73);
+    --modal-overlay-color: rgba(0, 0, 0, 0.356);
+    --modal-bg-color: rgb(8 47 73);
+    --sidepanel-a-hover: #01193b;
+    --sidepanel-a-active: #01142e;
+    --sidepanel-icon-active: #3b82f6;
+    --theme-btn-color: white;
+    --theme-btn-bg-hover: #06273d;
+    --theme-color: rgb(176, 213, 255);
+    --welcome-bg-image: rgba(0, 0, 0, 0.26);
+    --form-input-color: #0a3958;
+    --gradient-one: #01142e;
+    --gradient-second: #01142e;
+    --create-h2-gradient1: rgba(56, 189, 248, 1);
+    --create-h2-gradient2: rgba(224, 242, 254, 1);
+  }
 }

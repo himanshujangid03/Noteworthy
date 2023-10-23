@@ -4,15 +4,16 @@
   grid-template-columns: 1fr;
   border-radius: 1.5rem;
   padding: 1rem;
-  background-color: #c3d6ff67;
+  background-color: var(--notes-bg-color);
   border-radius: 1.5rem;
+  color: var(--font-color);
 }
 
 .edit-note {
-  margin: 0.1rem;
+  margin: 0.2rem;
   padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: #ffffff;
+  border-radius: 1rem;
+  background-color: var(--note-bg-color);
 }
 
 .edit-note .edit-note__div1 {
@@ -50,7 +51,7 @@
   width: 60rem;
   max-width: 90%;
   margin: 0rem;
-  background: white;
+  background-color: var(--modal-bg-color);
   padding: 2rem;
   border-radius: 1.5rem;
   display: grid;
@@ -63,7 +64,6 @@
 }
 
 .editModal form label {
-  color: black;
   font-size: 1.3rem;
   font-weight: 500;
 }
@@ -71,33 +71,37 @@
 .editModal form input {
   max-width: 95%;
   border: none;
-  background-color: rgb(241, 241, 241);
+  background-color: var(--form-input-color);
   padding: 1rem;
   border-radius: 0.5rem;
   font-size: 1.2rem;
   margin: 0.8rem 0 0.8rem 0;
   font-family: "Montserrat", sans-serif;
   outline: none;
+  color: var(--font-color);
+  transition: all 0.2s;
 }
 
 .editModal form input:focus {
-  border: 2px solid blue;
+  border: 2px solid rgb(41, 41, 253);
 }
 
 .editModal form textarea {
   max-width: 95%;
   border: none;
-  background-color: rgb(241, 241, 241);
+  background-color: var(--form-input-color);
   padding: 1rem;
   border-radius: 0.5rem;
   font-size: 1.2rem;
   margin: 0.8rem 0 0.8rem 0;
   font-family: "Montserrat", sans-serif;
   outline: none;
+  color: var(--font-color);
+  transition: all 0.2s;
 }
 
 .editModal form textarea:focus {
-  border: 2px solid blue;
+  border: 2px solid rgb(44, 44, 255);
 }
 
 .editModal__closebtn {
@@ -108,10 +112,11 @@
   margin-bottom: 1rem;
   padding: 0.6rem;
   cursor: pointer;
+  color: var(--font-color);
 }
 
 .editModal__closebtn:hover {
-  background-color: rgb(216, 216, 216);
+  background-color: transparent;
 }
 
 /* -----------  EDIT TOGGLE MODAL -----------------------*/

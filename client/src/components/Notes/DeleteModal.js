@@ -2,16 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { deleteNotesApi } from "../../utils/api";
 import "./NewNote.css";
 import Loader from "../../ui/Loader";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./DeleteModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../ui/Button";
 import ModalDiv from "../../ui/ModalDiv";
 import { AnimatePresence, motion } from "framer-motion";
+import AuthContext from "../../utils/auth-context";
 
 function EditNoteModal({ closeModal, item }) {
   const [isLoading, setIsLoading] = useState(false);
+  const ctx = useContext(AuthContext);
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
@@ -32,6 +34,12 @@ function EditNoteModal({ closeModal, item }) {
         navigate("");
         closeModal(false);
         setIsLoading(false);
+        setTimeout(() => {
+          ctx.setMessageModal(true);
+        }, 1000);
+        setTimeout(() => {
+          ctx.setMessageModal(false);
+        }, 3000);
       }
     }, 500);
   };

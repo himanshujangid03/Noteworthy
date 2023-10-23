@@ -10,7 +10,8 @@ import {
   faX,
 } from "@fortawesome/free-solid-svg-icons";
 import "./SidePanel.css";
-import Logo from "../../assets/NoteWorthy-logos_black.png";
+import lightLogo from "../../assets/NoteWorthy-logos_black.png";
+import darkLogo from "../../assets/NoteWorthy-logos_white.png";
 import Logout from "../Authentication/Logout";
 import { useContext, useState } from "react";
 import AuthContext from "../../utils/auth-context";
@@ -45,18 +46,23 @@ function SidePanel() {
             <FontAwesomeIcon icon={faX} />
           </button>
           <div className="side-panel__info">
-            <img className="logo" src={Logo} alt={Logo} />
-            <Link to={"/home/note"} onClick={() => ctx.setShowSidePanel(false)}>
-              <motion.button
-                className="create-note-btn"
-                animate={{ opacity: 1 }}
-              >
+            <img
+              className="logo"
+              src={`${ctx.mode ? darkLogo : lightLogo}`}
+              alt={"noteworthy"}
+            />
+            <Link
+              style={{ outline: "none" }}
+              to={"/home/note"}
+              onClick={() => ctx.setShowSidePanel(false)}
+            >
+              <button className="create-note-btn" animate={{ opacity: 1 }}>
                 <FontAwesomeIcon
                   icon={faPlus}
                   style={{ marginRight: "1rem" }}
                 />
                 Create
-              </motion.button>
+              </button>
             </Link>
             <div className="hl"></div>
           </div>
@@ -67,10 +73,12 @@ function SidePanel() {
               onClick={() => ctx.setShowSidePanel(false)}
             >
               <p>
-                <FontAwesomeIcon
-                  icon={faHouse}
-                  style={{ marginRight: "1rem" }}
-                />
+                <label>
+                  <FontAwesomeIcon
+                    icon={faHouse}
+                    style={{ marginRight: "1rem" }}
+                  />
+                </label>
                 Dashboard
               </p>
             </NavLink>
@@ -81,10 +89,12 @@ function SidePanel() {
               onClick={() => ctx.setShowSidePanel(false)}
             >
               <p>
-                <FontAwesomeIcon
-                  icon={faNoteSticky}
-                  style={{ marginRight: "1rem" }}
-                />
+                <label>
+                  <FontAwesomeIcon
+                    icon={faNoteSticky}
+                    style={{ marginRight: "1rem" }}
+                  />
+                </label>
                 All Notes
               </p>
             </NavLink>
@@ -95,10 +105,12 @@ function SidePanel() {
               onClick={() => ctx.setShowSidePanel(false)}
             >
               <p>
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  style={{ marginRight: "1rem" }}
-                />
+                <label>
+                  <FontAwesomeIcon
+                    icon={faPenToSquare}
+                    style={{ marginRight: "1rem" }}
+                  />
+                </label>
                 Edit Notes
               </p>
             </NavLink>
@@ -109,10 +121,12 @@ function SidePanel() {
               onClick={() => ctx.setShowSidePanel(false)}
             >
               <p>
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  style={{ marginRight: "1rem" }}
-                />
+                <label>
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    style={{ marginRight: "1rem" }}
+                  />
+                </label>
                 Favourites
               </p>
             </NavLink>

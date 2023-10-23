@@ -1,14 +1,16 @@
 import styled, { css } from "styled-components";
 
 const ModalDiv = styled.div`
-  background-color: white;
+  background-color: var(--modal-bg-color);
   padding: 2rem;
   margin: 1rem;
+  font-size: 1.2rem;
   border-radius: 1.5rem;
-  width: 30rem;
+  width: 40rem;
   max-width: 95%;
   height: 10rem;
   display: grid;
+  color: var(--font-color);
 
   ${(props) =>
     props.type === "grid2" &&

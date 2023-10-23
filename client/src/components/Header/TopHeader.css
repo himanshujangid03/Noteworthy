@@ -9,7 +9,7 @@
 .offcanvas-btn {
   display: none;
   background-color: #c3d6ff00;
-  color: white;
+  color: var(--font-color);
   cursor: pointer;
   padding: 0.3rem;
   border-radius: 0.3rem;
@@ -19,7 +19,7 @@
 }
 .offcanvas-btn:hover {
   background-color: #c3d6ff;
-  color: black;
+  color: var(--font-color);
 }
 
 .topheader input {
@@ -29,17 +29,19 @@
   max-width: 90%;
   border: none;
   outline: none;
-  background-color: #c3d6ff;
+  background-color: var(--input-bg-color);
   border-radius: 1rem;
-  box-shadow: rgba(146, 146, 146, 0.432) 0px 2px 14px;
+  box-shadow: var(--box-shadow);
   font-size: 1.2rem;
   font-family: "Montserrat";
   font-weight: 500;
   transition: all 0.2s;
+  color: var(--font-color);
+  border: 1px solid var(--border-color);
 }
 
 .topheader input:focus {
-  border: 2px solid #071952;
+  border: 2px solid var(--border-color);
   width: 40rem;
 }
 
@@ -47,11 +49,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: max-content;
 }
 
 .topheader .user-info P {
   font-size: 1.4rem;
-  color: black;
+  color: var(--font-color);
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
   margin: 0 0 0 1rem;
