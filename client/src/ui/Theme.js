@@ -35,7 +35,7 @@ function Theme() {
         onClick={changeThemeHandler}
         style={{ marginRight: "2rem" }}
       >
-        <span class="material-symbols-outlined">
+        <span className="material-symbols-outlined">
           {ctx.mode ? "light_mode" : "dark_mode"}
         </span>
       </Button>

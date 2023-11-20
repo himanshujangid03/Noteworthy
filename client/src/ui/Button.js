@@ -60,8 +60,7 @@ const Button = styled.button`
       background-color: white;
       border: 1px solid #c0c0c0;
       width: 6rem;
-
-      padding: 0 1rem 0 1rem;
+      padding: 0.5rem;
       font-weight: 500;
 
       &:hover {
