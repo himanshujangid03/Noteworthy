@@ -31,7 +31,7 @@ function TopHeader() {
             className="offcanvas-btn"
             onClick={() => ctx.setShowSidePanel((el) => !el)}
           >
-            <FontAwesomeIcon icon={faBars} size="xl" />
+            <FontAwesomeIcon icon={faBars} color="white" size="2xl" />
           </button>
         </div>
         <div className="user-info">

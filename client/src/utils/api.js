@@ -20,4 +20,3 @@ exports.deleteNotesApi =
   "https://noteworthy-server-latest.onrender.com/note/delete-note/";
 exports.usernameApi =
   "https://noteworthy-server-latest.onrender.com/user/profile";
-

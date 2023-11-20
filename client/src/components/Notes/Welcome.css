@@ -45,7 +45,7 @@
   .welcome {
     width: fit-content;
     background-position: bottom;
-    color: var(--font-color);
+    color: white;
   }
 
   .welcome h3 {
@@ -58,6 +58,6 @@
     font-size: 1.5rem;
     margin-top: 1.5rem;
     font-weight: 500;
-    color: var(--font-color);
+    color: white;
   }
 }
