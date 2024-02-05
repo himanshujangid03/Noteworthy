@@ -16,6 +16,7 @@ import {
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import GoogleSIgnIn from "./Google Auth/GoogleSIgnIn";
 
 function Login() {
   const [showPass, setShowPass] = useState(false);
@@ -24,8 +25,8 @@ function Login() {
   const data = useActionData();
 
   return (
-    <div className="form">
-      <>
+    <>
+      <div className="form">
         <Link to={"/"}>
           <p>← back to home page</p>
         </Link>
@@ -47,7 +48,6 @@ function Login() {
               id="email"
               type="email"
               placeholder="Enter your email address"
-              
               required
             />
             <div className="input-pass">
@@ -56,7 +56,6 @@ function Login() {
                 id="password"
                 type={`${showPass ? "text" : "password"}`}
                 placeholder="Enter your password"
-                
                 required
               />
               <span onClick={() => setShowPass((el) => !el)}>
@@ -75,8 +74,11 @@ function Login() {
             </p>
           </Form>
         </div>
-      </>
-    </div>
+      </div>
+      <div className="googleSignIn">
+        <GoogleSIgnIn />
+      </div>
+    </>
   );
 }
 

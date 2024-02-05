@@ -69,7 +69,7 @@ export async function action({ request, params }) {
     email: data.get("email"),
     password: data.get("password"),
   };
-  const response = await fetch(signupApi, {
+  const response = await fetch("http://localhost:4000/user/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

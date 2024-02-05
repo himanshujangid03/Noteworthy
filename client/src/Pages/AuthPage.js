@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./AuthPage.css";
 import Logo from "../assets/NoteWorthy-logos_black.png";
 import { motion } from "framer-motion";
+import Button from "../ui/Button";
 
 function AuthPage() {
   return (
@@ -9,7 +10,7 @@ function AuthPage() {
       <div className="AuthPage">
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 1, scale: 1,  }}
           transition={{
             duration: 0.8,
             delay: 0.3,
@@ -27,10 +28,10 @@ function AuthPage() {
           <div className="AuthPage__btns">
             <>
               <Link to={"/login"}>
-                <button>Login</button>
+                <Button size='large'>Login</Button>
               </Link>
               <Link to={"/signup"}>
-                <button>Signup</button>
+                <Button>Signup</Button>
               </Link>
             </>
           </div>

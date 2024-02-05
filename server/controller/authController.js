@@ -14,7 +14,7 @@ function signToken(id) {
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
-  const expires = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
+  const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
   const cookieOptions = {
     expires,
@@ -60,6 +60,7 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("Invalid email or password", 401));
   }
+
   createSendToken(user, 201, res);
 });
 
@@ -95,8 +96,8 @@ exports.logout = catchAsync(async (req, res, next) => {
 });
 
 exports.getUserName = catchAsync(async (req, res, next) => {
-  const { name } = req.user;
+  const { name, email } = req.user;
 
-  res.status(201).json({ name: name });
+  res.status(201).json({ name: name, email: email });
   next();
 });

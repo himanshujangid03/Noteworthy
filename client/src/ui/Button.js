@@ -1,22 +1,25 @@
 import styled, { css } from "styled-components";
 
 const Button = styled.button`
-  margin: 0rem 0.5rem 0 0.5rem;
-  padding: 0.6rem 1rem 0.6rem 1rem;
-  outline: none;
-  font-size: 1.2rem;
-  width: 5rem;
-  border: none;
-  border-radius: 0.6rem;
+ 
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-family: Montserrat;
   font-weight: 400;
 
+  ${(props) => sizes[props.size]}
+  ${(props) => variations[props.variation]}
+
   @media (max-width: 500px) {
     font-size: 0.9rem;
     margin-top: 1rem;
   }
+  ${(props) =>
+    props.isLoading === true &&
+    css`
+      background-color: white;
+      cursor: not-allowed;
+    `};
 
   ${(props) =>
     props.type === "deletebtn" &&
@@ -156,5 +159,30 @@ const Button = styled.button`
       }
     `};
 `;
+
+//* Through new custom way
+
+const sizes = {
+  medium: css`
+    padding: 1rem;
+    border-radius: 1rem;
+  `,
+  large: css`
+    padding: 1rem;
+    border-radius: 1rem;
+  `,
+};
+
+const variations = {
+  primary: css`
+    background: #ececec;
+    &:hover {
+      background: black;
+      color: white;
+    }
+  `,
+  danger: css``,
+  brand: css``,
+};
 
 export default Button;

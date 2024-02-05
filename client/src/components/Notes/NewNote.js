@@ -23,15 +23,17 @@ function NewNote(props) {
             rows={"13"}
             name="content"
             placeholder="Write the content of the note here..."
+            style={{ resize: "vertical" }}
             required
           />
           <Button
+            isLoading={isLoading}
             style={{
               cursor: `${isLoading ? "not-allowed" : ""}`,
             }}
             type="createbtn"
           >
-            {isLoading ? <Loader /> : "Submit"}
+            Submit
           </Button>
         </Form>
       </div>

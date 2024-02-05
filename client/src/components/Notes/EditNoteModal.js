@@ -90,6 +90,7 @@ function EditNoteModal({ closeModal, item }) {
                   name="content"
                   placeholder="Content"
                   value={content}
+                  style={{ resize: "vertical" }}
                   onChange={(e) => setContent(e.target.value)}
                   required
                 />

@@ -13,6 +13,7 @@ mongoose
     console.log("Database connection successfully!");
   });
 
-app.listen(4000, () => {
-  console.log("server started successfully!");
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`server started successfully at ${PORT} 🔥🔥`);
 });

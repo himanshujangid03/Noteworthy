@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+const NotesFolder = require("../model/folderModel");
 const Note = require("../model/noteModal");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
@@ -12,15 +13,13 @@ exports.createNote = catchAsync(async (req, res, next) => {
     content: content,
   });
 
-  newNote.save();
-
   if (!title || !content) {
     return next();
   }
+  newNote.save();
 
-  setTimeout(() => {
-    res.status(201).json({ status: "success" });
-  }, 1000);
+  res.status(201).json({ status: "success" });
+  next();
 });
 
 exports.getNote = catchAsync(async (req, res, next) => {
