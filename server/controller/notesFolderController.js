@@ -12,7 +12,10 @@ exports.getRecentFolders = (req, res, next) => {
 };
 
 exports.getNotesFolder = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(NotesFolder.find(), req.query)
+  const features = new APIFeatures(
+    NotesFolder.find({ userId: req.user._id }),
+    req.query,
+  )
     .filter()
     .sort()
     .limitFields()
@@ -59,4 +62,15 @@ exports.getNotesFromFolder = catchAsync(async (req, res, next) => {
 
   res.status(201).json(notesId);
   next();
+});
+
+exports.updateNoteFolder = catchAsync(async (req, res, next) => {
+  const folder = req.body;
+  const { notesId } = folder;
+
+  const newNote = await Note.create({
+    userId: req.user._id,
+    title: req.body.title,
+    content: req.body.content,
+  });
 });

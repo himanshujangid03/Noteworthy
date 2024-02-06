@@ -6,11 +6,17 @@ const catchAsync = require("../utils/catchAsync");
 
 exports.createNote = catchAsync(async (req, res, next) => {
   const userId = req.user._id;
-  const { title, content } = req.body;
+  const { title, content, folderId } = req.body;
+  const folder = await NotesFolder.findById({ _id: folderId });
+  const { notesId } = folder;
   const newNote = await Note.create({
     userId: userId,
     title: title,
     content: content,
+  });
+
+  const insertNoteInFolder = await NotesFolder.findByIdAndUpdate(folderId, {
+    notesId: [...notesId, newNote],
   });
 
   if (!title || !content) {
