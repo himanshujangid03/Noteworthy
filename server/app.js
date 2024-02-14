@@ -24,14 +24,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //* sessions
 
 app.use(cookieParser());
-
+/* 
 const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,
   message: "Too many request on this IP address. Try again in an hour",
 });
+ */
+/* app.use("/", limiter); */
 
-app.use("/", limiter);
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 app.use(
   cors({
@@ -50,21 +58,20 @@ app.use(
   }),
 );
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-  }),
-);
+//* session setup
+app.use(passport.initialize());
+app.use(passport.session());
 
+//* google signin route
 app.get(
   "/auth/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
+    prompt: "select_account",
   }),
 );
 
+//* after google sign in redirect to home page
 app.get(
   "/auth/google/secrets",
   passport.authenticate("google", {
@@ -73,8 +80,13 @@ app.get(
   }),
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
+//* google logout
+app.get("/user/google/logout", (req, res, next) => {
+  req.logout(() => {
+    console.log("logged out from google");
+    return next();
+  });
+});
 
 passport.use(
   "google",
@@ -88,9 +100,11 @@ passport.use(
     async (accessToken, refreshToken, profile, cb) => {
       try {
         const user = await User.findOne({ email: profile.email });
+        cb(null, user);
+
         if (!user) {
           const newUser = await User.create({
-            name: profile.name.givenName,
+            name: profile.name.displayName,
             email: profile.email,
             password: profile.id,
             picture: profile.picture,
@@ -98,7 +112,6 @@ passport.use(
           });
           cb(null, newUser);
         }
-        cb(null, user);
       } catch (err) {
         cb(err);
       }

@@ -88,26 +88,19 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
 
 //* logout
 exports.logout = catchAsync(async (req, res, next) => {
-  const { mode } = req.user;
-  if (mode === "google") {
-    req.logout(() => {
-      res.status(201).json("logout from google");
-    });
-    return next();
-  }
-
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
   });
   res.status(201).json({ status: "success" });
+  next();
 });
 
 //* get user
 exports.getUserName = catchAsync(async (req, res, next) => {
-  const { name, email } = req.user;
-  console.log(req.user);
+  const { name, email, picture, mode } = req.user;
+  const data = { name, email, picture, mode };
 
-  res.status(201).json({ name: name, email: email });
+  res.status(201).json(data);
   next();
 });
