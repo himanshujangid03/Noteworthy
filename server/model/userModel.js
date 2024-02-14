@@ -22,6 +22,13 @@ const userSchema = new mongoose.Schema({
     minlength: 5,
     select: false,
   },
+  picture: {
+    type: String,
+  },
+  mode: {
+    type: String,
+    default: "local",
+  },
 });
 
 userSchema.pre("save", async function (next) {

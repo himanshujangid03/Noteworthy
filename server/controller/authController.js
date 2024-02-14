@@ -11,6 +11,7 @@ function signToken(id) {
   });
 }
 
+//* create token
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
@@ -37,6 +38,7 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
+//* sign up
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
@@ -48,6 +50,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   next();
 });
 
+//* login
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -64,12 +67,8 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 201, res);
 });
 
+//* check is logged in
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
-  if (!req.cookies.jwt) {
-    return next(
-      new AppError("You are not logged In! Please login to get access"),
-    );
-  }
   if (req.cookies.jwt) {
     const decoded = await promisify(jwt.verify)(
       req.cookies.jwt,
@@ -87,7 +86,16 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
   next();
 });
 
+//* logout
 exports.logout = catchAsync(async (req, res, next) => {
+  const { mode } = req.user;
+  if (mode === "google") {
+    req.logout(() => {
+      res.status(201).json("logout from google");
+    });
+    return next();
+  }
+
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
@@ -95,8 +103,10 @@ exports.logout = catchAsync(async (req, res, next) => {
   res.status(201).json({ status: "success" });
 });
 
+//* get user
 exports.getUserName = catchAsync(async (req, res, next) => {
   const { name, email } = req.user;
+  console.log(req.user);
 
   res.status(201).json({ name: name, email: email });
   next();

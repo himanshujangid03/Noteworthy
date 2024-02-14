@@ -76,7 +76,6 @@ export async function action({ request, params }) {
     },
     body: JSON.stringify(userData),
   });
-  console.log(response);
 
   if (!response.ok) {
     return response;

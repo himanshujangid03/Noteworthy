@@ -5,17 +5,30 @@ const taskSchema = new mongoose.Schema({
     type: String,
     reqruied: [true, "This field is required"],
   },
-  taskName: {
+  title: {
     type: String,
     required: [true, "This field is required!"],
+    unique: true,
   },
-  startsFrom: {
-    type: Date,
-    required: [true, "This field is required!"],
+  description: {
+    type: String,
+    required: [true, "This field is required"],
   },
   dueDate: {
     type: Date,
     required: [true, "This field is required!"],
+  },
+  updatedAt: {
+    type: Date,
+    required: [true, "This field is required!"],
+  },
+  priority: {
+    type: Boolean,
+    default: false,
+  },
+  status: {
+    type: String,
+    default: "pending",
   },
   createdAt: {
     type: Date,

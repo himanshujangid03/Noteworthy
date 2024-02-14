@@ -7,6 +7,9 @@ const noteSchema = new mongoose.Schema({
     required: [true, "User Id is required!"],
     trim: true,
   },
+  folderId: {
+    type: String,
+  },
   title: {
     type: String,
     required: [true, "Please define note title"],

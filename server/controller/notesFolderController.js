@@ -42,7 +42,7 @@ exports.createNotesFolder = catchAsync(async (req, res, next) => {
     notesId: notes,
   });
 
-  if (!name || !notesId) {
+  if (!name) {
     return next();
   }
   newNotesFolder.save();
@@ -64,13 +64,19 @@ exports.getNotesFromFolder = catchAsync(async (req, res, next) => {
   next();
 });
 
-exports.updateNoteFolder = catchAsync(async (req, res, next) => {
-  const folder = req.body;
-  const { notesId } = folder;
-
-  const newNote = await Note.create({
-    userId: req.user._id,
-    title: req.body.title,
-    content: req.body.content,
+exports.updateFolder = catchAsync(async (req, res, next) => {
+  const folder = await NotesFolder.findByIdAndUpdate(req.params.id, {
+    name: req.body.name,
   });
+  if (!folder) return next(new AppError("Folder doesnt exist"));
+
+  res.status(201).json({ status: "updated" });
+});
+
+exports.deleteFolder = catchAsync(async (req, res, next) => {
+  const folder = await NotesFolder.findByIdAndDelete(req.params.id);
+
+  if (!folder) return next(new AppError("Folder doesnt exist"));
+
+  res.status(201).json({ status: "deleted" });
 });

@@ -9,7 +9,7 @@ router
   .route("/create-note")
   .post(authController.isLoggedIn, notesController.createNote);
 router
-  .route("/get-note")
+  .route("/get-note/:id")
   .get(authController.isLoggedIn, notesController.getNote);
 
 router
@@ -33,6 +33,14 @@ router
 router
   .route("/getnotes-folder/:id")
   .get(authController.isLoggedIn, notesFolderController.getNotesFromFolder);
+
+router
+  .route("/delete-folder/:id")
+  .delete(authController.isLoggedIn, notesFolderController.deleteFolder);
+
+router
+  .route("/update-folder/:id")
+  .patch(authController.isLoggedIn, notesFolderController.updateFolder);
 
 router
   .route("/get-recentfolders")
